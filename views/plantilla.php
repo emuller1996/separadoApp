@@ -24,6 +24,19 @@
 
 <body id="page-top">
 
+<?php 
+require_once "./controllers/vistasControlador.php";
+$IV = new vistasControlador();
+
+$vistas=$IV->obtener_vistas_controlador();
+
+if($vistas=="404" || $vistas=="login"){
+    require_once "./views/content/".$vistas."-view.php";
+
+}else{
+
+?>
+
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -44,8 +57,9 @@
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Blank Page</h1>
+                    <?php include  $vistas;
+                    
+                    ?>
 
                 </div>
                 <!-- /.container-fluid -->
@@ -93,7 +107,7 @@
             </div>
         </div>
     </div>
-
+    <?php }?>
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo SERVERURL?>views/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo SERVERURL?>views/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
