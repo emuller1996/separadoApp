@@ -42,6 +42,38 @@
     </li>
 
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-user-friends"></i>
+            <span> Productos</span>
+        </a>
+        <div id="collapseTree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion Productos</h6>
+                <a class="collapse-item" href="<?php echo SERVERURL?>Productos/">Productos</a>
+                <a class="collapse-item" href="#">Rubro Productos</a>
+                <a class="collapse-item" href="#">Reportes Productos</a>
+            </div>
+        </div>
+    </li>
+
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-user-friends"></i>
+            <span> Usuarios</span>
+        </a>
+        <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion Usuarios</h6>
+                <a class="collapse-item" href="<?php echo SERVERURL?>Usuarios/">Usuarios</a>
+                <a class="collapse-item" href="<?php echo SERVERURL?>usuario-nuevo/">Nuevo Usuario</a>
+                <a class="collapse-item" href="#">Reportes Usuarios</a>
+            </div>
+        </div>
+    </li>
+
+
     
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">

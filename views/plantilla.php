@@ -19,6 +19,8 @@
 
     <!-- Custom styles for this template-->
     <link href="<?php echo SERVERURL?>views/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo SERVERURL?>views/css/sweetalert2.min.css">
+    <script src="<?php echo SERVERURL?>views/js/sweetalert2.min.js"></script>
 
 </head>
 
@@ -114,9 +116,12 @@ if($vistas=="404" || $vistas=="login"){
 
     <!-- Core plugin JavaScript-->
     <script src="<?php echo SERVERURL?>views/vendor/jquery-easing/jquery.easing.min.js"></script>
+    
 
     <!-- Custom scripts for all pages-->
     <script src="<?php echo SERVERURL?>views/js/sb-admin-2.min.js"></script>
+    
+    <script src="<?php echo SERVERURL?>views/js/alertas.js"></script>
 
 </body>
 
