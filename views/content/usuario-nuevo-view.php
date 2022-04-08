@@ -11,24 +11,31 @@
                     <form class="user FormularioAjax" action="POST" data-form="save" autocomplete="off" >
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="text" class="form-control form-control-user" id="Nombre" placeholder="Nombre">
+                                <input type="text" class="form-control form-control-user" id="usuario_nombre_reg" name="usuario_nombre_reg" placeholder="Nombre">
                             </div>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control form-control-user" id="Apellido" placeholder="Apellido">
+                                <input type="text" class="form-control form-control-user" id="usuario_apellido_reg" name="usuario_apellido_reg" placeholder="Apellido">
                             </div>
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" placeholder="Email Address">
+                            <input type="email" class="form-control form-control-user" id="usuario_email_reg" name="usuario_email_reg" placeholder="Correo Electrónico">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user" id="usuario_usuario_reg" name="usuario_usuario_reg" placeholder="Usuario">
                         </div>
                         <div class="form-group row">
                             <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                <input type="password" class="form-control form-control-user" id="usuario_pass_reg_1" name="usuario_pass_reg_1"placeholder="Contraseña">
                             </div>
                             <div class="col-sm-6">
-                                <input type="password" class="form-control form-control-user" id="exampleRepeatPassword" placeholder="Repeat Password">
+                                <input type="password" class="form-control form-control-user" id="usuario_pass_reg_2" name="usuario_pass_reg_2"placeholder="Confirmar Contraseña">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control form-control-user" id="usuario_telefono_reg" name="usuario_telefono_reg" placeholder="Teléfono">
+                        </div>
                         <button type="submit" class="btn btn-google btn-user btn-block">
+                        <i class="fas fa-plus-circle me-4"></i>
                                 Guardar
                         </button>
                         
