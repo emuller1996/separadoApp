@@ -1,7 +1,7 @@
 <?php
 
 	const SERVER="localhost";
-	const DB="db_permisos";
+	const DB="separado_app";
 	const USER="root";
 	const PASS="";
 
