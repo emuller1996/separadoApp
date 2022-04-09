@@ -6,7 +6,7 @@
     <div class="card-body">
 
 <?php 
-$peticionAjax;
+$peticionAjax=false;
 require_once "./controllers/usuarioControlador.php";
 $ins_usuario_controlador = new usuarioControlador();
 
