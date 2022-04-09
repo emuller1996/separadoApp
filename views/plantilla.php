@@ -27,6 +27,7 @@
 <body id="page-top">
 
 <?php 
+$peticionAjax;
 require_once "./controllers/vistasControlador.php";
 $IV = new vistasControlador();
 
