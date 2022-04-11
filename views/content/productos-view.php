@@ -4,7 +4,7 @@
 </div>
 
 <div class="p-4 bg-dark rounded" >
-    <table class=" w-100">
+    <table id="tableUsuario" class=" w-100">
         <thead>
             <th>ID</th>
             <th>Codigo</th>

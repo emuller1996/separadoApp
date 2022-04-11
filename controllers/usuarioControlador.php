@@ -94,7 +94,7 @@ class usuarioControlador extends usuarioModelo
 
 		$tabla .= '
 			<div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+            <table class="table table-bordered table-striped table-hover" id="tableUsuario" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Id</th>
@@ -129,7 +129,7 @@ class usuarioControlador extends usuarioModelo
 				</td>
 				<td>
 					<div class="btn-group">
-						<a href="#" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+						<a href="'.SERVERURL.'usuario-editar/'.mainModel::encryption($row['usuario_id']) .'" class="btn btn-warning"><i class="fas fa-edit"></i></a>
 						<a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
 					</div>
 				</td>
