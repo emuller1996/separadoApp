@@ -35,7 +35,7 @@
                             <input type="tel" class="form-control form-control-user" id="usuario_telefono_reg" name="usuario_telefono_reg" placeholder="Teléfono">
                         </div>
                         <button type="submit" class="btn btn-google btn-user btn-block">
-                        <i class="fas fa-plus-circle me-4"></i>
+                        <i class="fas fa-save mr-2"></i>
                                 Guardar
                         </button>
                         

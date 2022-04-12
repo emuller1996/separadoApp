@@ -1,21 +1,63 @@
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Productos</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-</div>
+<?php
 
-<div class="p-4 bg-dark rounded" >
-    <table id="tableUsuario" class=" w-100">
-        <thead>
-            <th>ID</th>
-            <th>Codigo</th>
-            <th>Description</th>
-        </thead>
-        <tbody>
-            <tr>
-                <td>2</td>
-                <td>ART-021</td>
-                <td>Camiseta Pima</td>
-            </tr>
-        </tbody>
-    </table>
+require_once "./controllers/productosControlador.php";
+$ins_productos_controlador = new productosControlador();
+$datos = $ins_productos_controlador->producto_all_controlador();
+?>
+
+<div class="card p-2 bg-light rounded">
+    <div class="card-header">
+        <div class="text-center fw-bold text-primary font-weight-bold m-0">
+            Lista Productos.
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="flex mb-2">
+            <a href="<?php echo SERVERURL ?>producto-nuevo" class="btn btn-danger">
+                <i class="fas fa-plus-circle mr-2"></i>NUEVO PRODUCTO
+            </a>
+        </div>
+        <table id="tableUsuario" class="table table-bordered w-100">
+            <thead>
+                <th>ID</th>
+                <th>Codigo</th>
+                <th>Description</th>
+                <th>Costo</th>
+                <th>Precio</th>
+                <th>Existencia</th>
+                <th>Creado</th>
+                <th>Estado</th>
+                <th>&nbsp;</th>
+            </thead>
+            <tbody>
+                <?php foreach ($datos as $row) { ?>
+                    <tr>
+                        <td><?php echo $row['producto_id'] ?></td>
+                        <td><?php echo $row['producto_codigo'] ?></td>
+                        <td><?php echo $row['producto_descripcion'] ?></td>
+                        <td><?php echo $row['producto_costo'] ?></td>
+                        <td><?php echo $row['producto_precio'] ?></td>
+                        <td><?php echo $row['producto_existencia'] ?></td>
+                        <td><?php echo $row['producto_creado'] ?></td>
+                        <td><span class="px-2 py-1 bg-primary rounded-pill text-white">
+                                <?php
+                                if ($row['producto_estado'] == 1) {
+                                    echo 'Activo';
+                                } else {
+                                    echo 'Inactivo';
+                                }
+                                ?></span>
+                        </td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="<?php  echo SERVERURL ."producto-editar/". mainModel::encryption($row['producto_id']); ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                        </td>
+
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
 </div>

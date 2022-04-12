@@ -9,7 +9,6 @@ protected static function insertar_usuario_modelo($datos){
     $sql=mainModel::conectar()->prepare(
         "INSERT INTO `usuarios`(`usuario_nombre`, `usuario_apellido`, `usuario_usuario`, `usuario_pass`, `usuario_email`, `usuario_telefono`, `usuario_estado`) 
         VALUES (:Nombre,:Apellido,:Usuario,:Clave,:Email,:Telefono,'ACTIVO')");
-
     $sql->bindParam(":Nombre",$datos['Nombre']);
     $sql->bindParam(":Apellido",$datos['Apellido']);
     $sql->bindParam(":Usuario",$datos['Usuario']);
