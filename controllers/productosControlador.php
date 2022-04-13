@@ -65,6 +65,33 @@ class productosControlador extends productoModelo{
 		echo json_encode($alerta);
 
     }
+
+	public function delete_producto_controlador(){
+		$id = mainModel::decryption($_POST['producto_id_del']);
+		$id =mainModel::limpiar_cadena($id);
+
+		$usuario_del = productoModelo::delete_producto_modelo($id);
+		if ($usuario_del->rowCount() == 1) {
+			$alerta = [
+				"Alerta" => "limpiar",
+				"Titulo" => "usuario registrado",
+				"Texto" => "Los datos del usuario han sido registrados con exito",
+				"Tipo" => "success"
+			];
+		} else {
+			$alerta = [
+				"Alerta" => "simple",
+				"Titulo" => "Ocurrió un error inesperado",
+				"Texto" => "No hemos podido registrar el usuario",
+				"Tipo" => "error"
+			];
+		}
+		echo json_encode($alerta);
+
+
+	}
+
+
 }
 
 ?>

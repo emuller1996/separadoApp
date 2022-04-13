@@ -17,47 +17,57 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                 <i class="fas fa-plus-circle mr-2"></i>NUEVO PRODUCTO
             </a>
         </div>
-        <table id="tableUsuario" class="table table-bordered w-100">
-            <thead>
-                <th>ID</th>
-                <th>Codigo</th>
-                <th>Description</th>
-                <th>Costo</th>
-                <th>Precio</th>
-                <th>Existencia</th>
-                <th>Creado</th>
-                <th>Estado</th>
-                <th>&nbsp;</th>
-            </thead>
-            <tbody>
-                <?php foreach ($datos as $row) { ?>
-                    <tr>
-                        <td><?php echo $row['producto_id'] ?></td>
-                        <td><?php echo $row['producto_codigo'] ?></td>
-                        <td><?php echo $row['producto_descripcion'] ?></td>
-                        <td><?php echo $row['producto_costo'] ?></td>
-                        <td><?php echo $row['producto_precio'] ?></td>
-                        <td><?php echo $row['producto_existencia'] ?></td>
-                        <td><?php echo $row['producto_creado'] ?></td>
-                        <td><span class="px-2 py-1 bg-primary rounded-pill text-white">
-                                <?php
-                                if ($row['producto_estado'] == 1) {
-                                    echo 'Activo';
-                                } else {
-                                    echo 'Inactivo';
-                                }
-                                ?></span>
-                        </td>
-                        <td>
-                            <div class="btn-group">
-                                <a href="<?php  echo SERVERURL ."producto-editar/". mainModel::encryption($row['producto_id']); ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
-                            </div>
-                        </td>
+        <div class="table-responsive">
+            <table id="tableUsuario" class="table table-bordered w-100 table-hover">
+                <thead>
+                    
+                    <th>Codigo</th>
+                    <th>Description</th>
+                    <th>Costo</th>
+                    <th>Precio</th>
+                    <th>Existencia</th>
+                    <th>Creado</th>
+                    <th>Estado</th>
+                    <th>&nbsp;</th>
+                </thead>
+                <tbody>
+                    <?php foreach ($datos as $row) { ?>
+                        <tr>
+                            
+                            <td><?php echo $row['producto_codigo'] ?></td>
+                            <td><?php echo $row['producto_descripcion'] ?></td>
+                            <td><?php echo $row['producto_costo'] ?></td>
+                            <td><?php echo $row['producto_precio'] ?></td>
+                            <td><?php echo $row['producto_existencia'] ?></td>
+                            <td><?php echo $row['producto_creado'] ?></td>
+                            <td><span class="px-2 py-1 bg-primary rounded-pill text-white">
+                                    <?php
+                                    if ($row['producto_estado'] == 1) {
+                                        echo 'Activo';
+                                    } else {
+                                        echo 'Inactivo';
+                                    }
+                                    ?></span>
+                            </td>
+                            <td>
+                                <div class="btn-group">
+                                    <a href="<?php echo SERVERURL . "producto-editar/" . mainModel::encryption($row['producto_id']); ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
 
-                    </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                                    <form action="<?php echo SERVERURL?>ajax/productoAjax.php" class="FormularioAjax" data-form="dalete" method="post">
+
+
+                                        <input type="hidden" value="<?php echo mainModel::encryption($row['producto_id']); ?>" name="producto_id_del">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

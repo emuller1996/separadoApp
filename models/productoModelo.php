@@ -23,4 +23,12 @@ class productoModelo extends mainModel
         
         return $sql;
     }
+
+    protected function delete_producto_modelo($id){
+        $sql = mainModel::conectar()->prepare("UPDATE productos SET producto_estado=0 WHERE producto_id= :id ");
+        $sql->bindParam(":id", $id);
+        $sql->execute();
+        return $sql;
+
+    } 
 }
