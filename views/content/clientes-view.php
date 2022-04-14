@@ -13,6 +13,11 @@
                     <th>Correo</th>
                     <th>Telefono</th>
                     <th>Estado</th>
+                    <th>
+                        <a href="<?php echo SERVERURL ?>cliente-nuevo" class="btn btn btn-danger">
+                        <i class="fas fa-plus-circle mr-2"></i>Nuevo
+                        </a>
+                    </th>
                 </thead>
                 <tbody>
                     <tr>
@@ -21,6 +26,17 @@
                         <td>emuller@gmail.com</td>
                         <td>318612011</td>
                         <td>ACTIVO</td>
+                        <td>
+                        <div class="btn-group">
+                                    <a href="<?php echo SERVERURL . "cliente-editar/" . mainModel::encryption('sad'); ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                    <form  action="<?php echo SERVERURL?>ajax/productoAjax.php" class="overflow-hidden FormularioAjax" data-form="dalete" method="post">
+                                        <input type="hidden" value="" name="producto_id_del">
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                        </td>
                     </tr>
                 </tbody>
 
