@@ -68,10 +68,6 @@ function alertas_ajax(alerta){
 			text: alerta.Texto,
 			type: alerta.Tipo,
 			confirmButtonText: 'Aceptar'
-		}).then((result) => {
-			if(result.value){
-				location.reload();
-			}
 		});
 	}else if(alerta.Alerta==="recargar"){
 		Swal.fire({
