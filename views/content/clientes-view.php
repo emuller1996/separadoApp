@@ -1,4 +1,30 @@
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Clientes</h1>
-    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+
+
+<div class="card shadow">
+    <div class="card-header">
+        <h6 class="m-0 font-weight-bold text-primary text-center">Lista Clientes</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered">
+                <thead>
+                    <th>Documento</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Estado</th>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1114734866</td>
+                        <td>Estefano Muller</td>
+                        <td>emuller@gmail.com</td>
+                        <td>318612011</td>
+                        <td>ACTIVO</td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
 </div>

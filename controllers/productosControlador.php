@@ -36,6 +36,19 @@ class productosControlador extends productoModelo{
 			exit();
         }
 
+		
+		$consulta_codigo = productoModelo::validar_codigo_modelo($producto_codigo);
+		if($consulta_codigo->rowCount() == 1){
+			$alerta = [
+				"Alerta" => "simple",
+				"Titulo" => "Ocurrió un error inesperado",
+				"Texto" => "El codigo del producto ya se encuentra en el sistema.",
+				"Tipo" => "error"
+			];
+			echo json_encode($alerta);
+			exit();
+		}
+
         $datos_producto_reg = [
 			"Codigo" => $producto_codigo,
 			"Descripcion" => $producto_descripcion,
@@ -73,9 +86,9 @@ class productosControlador extends productoModelo{
 		$usuario_del = productoModelo::delete_producto_modelo($id);
 		if ($usuario_del->rowCount() == 1) {
 			$alerta = [
-				"Alerta" => "limpiar",
-				"Titulo" => "usuario registrado",
-				"Texto" => "Los datos del usuario han sido registrados con exito",
+				"Alerta" => "recargar",
+				"Titulo" => "Producto Borrado",
+				"Texto" => "Los datos del producto han sido eliminados con exito",
 				"Tipo" => "success"
 			];
 		} else {

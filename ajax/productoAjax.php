@@ -12,7 +12,9 @@
         }
 
         if(isset($_POST['producto_id_del'])){
+
             echo $ins_producto->delete_producto_controlador();
+            
         }
 
 

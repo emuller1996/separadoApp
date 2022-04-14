@@ -30,5 +30,15 @@ class productoModelo extends mainModel
         $sql->execute();
         return $sql;
 
-    } 
+    }
+    
+    protected function validar_codigo_modelo($codigo){
+        $sql = mainModel::conectar()->prepare("SELECT`producto_codigo` FROM `productos` WHERE `producto_codigo` = :Codigo");
+        $sql->bindParam(":Codigo", $codigo);
+        $sql->execute();
+        
+        return $sql;
+
+
+    }
 }

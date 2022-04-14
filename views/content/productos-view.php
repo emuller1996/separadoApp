@@ -18,7 +18,7 @@ $datos = $ins_productos_controlador->producto_all_controlador();
             </a>
         </div>
         <div class="table-responsive">
-            <table id="tableUsuario" class="table table-bordered w-100 table-hover">
+            <table id="tableUsuario" class="table table-bordered table-hover">
                 <thead>
                     
                     <th>Codigo</th>
@@ -53,7 +53,7 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                                 <div class="btn-group">
                                     <a href="<?php echo SERVERURL . "producto-editar/" . mainModel::encryption($row['producto_id']); ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
 
-                                    <form action="<?php echo SERVERURL?>ajax/productoAjax.php" class="FormularioAjax" data-form="dalete" method="post">
+                                    <form  action="<?php echo SERVERURL?>ajax/productoAjax.php" class="overflow-hidden FormularioAjax" data-form="dalete" method="post">
 
 
                                         <input type="hidden" value="<?php echo mainModel::encryption($row['producto_id']); ?>" name="producto_id_del">
