@@ -21,6 +21,15 @@ protected static function insertar_usuario_modelo($datos){
 }
 
 
+protected function get_usuario_model($id){
+    $sql=mainModel::conectar()->prepare(
+        "SELECT * FROM usuarios WHERE usuario_id = :Id");
+    $sql->bindParam(":Id",$id);
+    $sql->execute();
+    return $sql;
+}
+
+
 
 
 }

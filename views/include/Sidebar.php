@@ -73,6 +73,21 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFac" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-cash-register"></i>
+            <span> Facturacion</span>
+        </a>
+        <div id="collapseFac" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Gestion Facturacion</h6>
+                <a class="collapse-item" href="<?php echo SERVERURL?>fac/">Registrar Factura</a>
+                <a class="collapse-item" href="<?php echo SERVERURL?>usuario-nuevo/">Factura Emitidas</a>
+                <a class="collapse-item" href="#">Reportes</a>
+            </div>
+        </div>
+    </li>
+
 
     
     <!-- Sidebar Toggler (Sidebar) -->

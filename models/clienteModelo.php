@@ -26,6 +26,10 @@ class clienteModelo extends mainModel {
         return $sql;
     }
 
+    protected function listar_clientes_modelo(){
+        
+    }
+
 }
 
 

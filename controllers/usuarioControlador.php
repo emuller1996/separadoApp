@@ -148,4 +148,12 @@ class usuarioControlador extends usuarioModelo
 
 		return $tabla;
 	}
+
+	public function get_usuario_controlador($id){
+		$idUser =  mainModel::limpiar_cadena($id);
+		$idUser =  mainModel::decryption($idUser);
+		$sql = usuarioModelo::get_usuario_model($idUser);
+		$usuarioEdit= $sql->fetch(PDO::FETCH_ASSOC);
+		return $usuarioEdit;
+	}
 }

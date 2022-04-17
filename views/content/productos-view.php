@@ -21,7 +21,7 @@ $datos = $ins_productos_controlador->producto_all_controlador();
             <table id="tableUsuario" class="table table-bordered table-hover">
                 <thead>
                     
-                    <th>Codigo</th>
+                    <th >Codigo</th>
                     <th>Description</th>
                     <th>Costo</th>
                     <th>Precio</th>
@@ -34,12 +34,12 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                     <?php foreach ($datos as $row) { ?>
                         <tr>
                             
-                            <td><?php echo $row['producto_codigo'] ?></td>
+                            <td class="text-nowrap"><?php echo $row['producto_codigo'] ?></td>
                             <td><?php echo $row['producto_descripcion'] ?></td>
                             <td><?php echo $row['producto_costo'] ?></td>
                             <td><?php echo $row['producto_precio'] ?></td>
                             <td><?php echo $row['producto_existencia'] ?></td>
-                            <td><?php echo $row['producto_creado'] ?></td>
+                            <td  class="text-nowrap" ><?php echo $row['producto_creado'] ?></td>
                             <td><span class="px-2 py-1 bg-primary rounded-pill text-white">
                                     <?php
                                     if ($row['producto_estado'] == 1) {
@@ -51,13 +51,13 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                             </td>
                             <td>
                                 <div class="btn-group">
-                                    <a href="<?php echo SERVERURL . "producto-editar/" . mainModel::encryption($row['producto_id']); ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                    <a href="<?php echo SERVERURL . "Producto-Editar/" . mainModel::encryption($row['producto_id']); ?>" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
 
                                     <form  action="<?php echo SERVERURL?>ajax/productoAjax.php" class="overflow-hidden FormularioAjax" data-form="dalete" method="post">
 
 
                                         <input type="hidden" value="<?php echo mainModel::encryption($row['producto_id']); ?>" name="producto_id_del">
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-sm btn-danger">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>

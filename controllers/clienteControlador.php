@@ -67,12 +67,20 @@ class clienteControlador extends clienteModelo {
 			];
         }
         echo json_encode($alerta);
-
-
-
     }
     /** FIN INSERTAR CLIENTE CONTROLADOR */
 
+
+    /**LISTAR CLIENTES CONTROLADOR */
+    public function listar_clientes_controlador(){
+        $consulta = "SELECT * FROM `clientes` WHERE cliente_estado =1 ";
+		$conexion = mainModel::conectar();
+		$SQL = $conexion->prepare($consulta);
+        $SQL->execute();
+		$datos = $SQL->fetchAll(PDO::FETCH_ASSOC);
+        return $datos;
+    }
+    /**FIN LISTAR CLIENTES CONTROLADOR */
 
 }
 
