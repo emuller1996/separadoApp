@@ -1,5 +1,5 @@
 <script>
-    
+    /**Buscar Cliente Factura */
     function buscar_cliente(){
         let input_buscar = document.querySelector("#input_cliente").value;
         input_buscar=input_buscar.trim();
@@ -23,6 +23,8 @@
         }
     }
 
+
+    /** Agregar Cliente Factura */
     function agregar_cliente(id){
         $('#modal_cliente').modal('hide');
         Swal.fire({
@@ -50,5 +52,40 @@
             $('#modal_cliente').modal('show');
         }   
 	});
+    }
+
+    /**Buscar Producto Factura */
+    function buscar_producto(){
+        let input_producto = document.querySelector("#input_producto").value;
+        input_producto=input_producto.trim();
+
+        if(input_producto!=""){
+            let datos = new FormData();
+            datos.append("buscar_producto",input_producto);
+
+            fetch("<?php echo SERVERURL?>ajax/facturaAjax.php",{
+                method:'POST',
+                body:datos
+            })
+			.then(respuesta => respuesta.text())
+			.then(respuesta => {
+                let tabla_cliente = document.querySelector("#tabla_producto");
+                tabla_cliente.innerHTML=respuesta;
+			});
+        }else{
+            
+
+        }
+    }
+
+    /** Agregar Producto Factura*/
+    function agregar_producto(id){
+        $('#modal_producto').modal('hide');
+        $('#modal_agregar_producto').modal('show');
+        $('#id_producto_agregar_factura').value=id;
+    }
+    function modal_buscar_producto(id){
+        $('#modal_agregar_producto').modal('hide');
+        $('#modal_producto').modal('show');
     }
 </script>

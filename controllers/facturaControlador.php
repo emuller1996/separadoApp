@@ -126,4 +126,90 @@ class facturaControlador extends facturaModelo
         echo json_encode($alerta);
 
     }
+
+
+    /**Buscar Producto Factura Controlador */
+    public function buscar_producto_factura_controlador(){
+        $producto_buscar  = mainModel::limpiar_cadena($_POST['buscar_producto']);
+        $datos_productos = mainModel::ejecutar_consulta_simple("SELECT * FROM productos WHERE producto_codigo LIKE '%$producto_buscar%' OR producto_descripcion LIKE '%$producto_buscar%' AND producto_estado = 1");
+
+        if ($datos_productos->rowCount() >= 1) {
+            $lista_productos = $datos_productos->fetchAll(PDO::FETCH_ASSOC);
+            $table = "";
+            $table .= '<table class="table table-bordered">
+            <thead>
+                <th>Codigo</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Exis</th>
+                <th>&nbsp;</th>
+            </thead>
+            <tbody>';
+
+            foreach ($lista_productos as $producto){
+
+                $table.= '<tr>
+                    <td>'.$producto['producto_codigo'] .'</td>
+                    <td>'.$producto['producto_descripcion'] .'</td>
+                    <td>'.$producto['producto_precio'] .'</td>
+                    <td>'.$producto['producto_existencia'] .'</td>
+                    <td> 
+                        <button type="button" onclick="agregar_producto('.$producto['producto_id'].')" class="btn btn-primary" >
+                        <i class="fas fa-cart-plus"></i>
+                        </button>
+                    <td>
+                </tr>';
+            }
+
+        }else {
+            return '
+            <div class="alert alert-warning" role="alert">
+            No se encuentra coincidencias de "' .$producto_buscar .'" en la Base de datos de PRODUCTOS
+            </div>';
+        }
+        return $table;
+    }
+
+
+    /**Agregar Producto Factura Controlador*/
+    public function agregar_producto_factura_controlador(){
+        $id = mainModel::limpiar_cadena($_POST['id_producto_agregar_factura']);
+
+        $checkProducto = mainModel::ejecutar_consulta_simple("SELECT * FROM productos WHERE producto_id = '$id' AND  producto_estado = 1");
+          
+        if($checkProducto->rowCount() <= 0){
+            $alerta = [
+				"Alerta" => "simple",
+				"Titulo" => "Ocurrió un error inesperado",
+				"Texto" => "No hemos podido selecionar el producto, por favor intente de nuevo.",
+				"Tipo" => "error"
+			];
+			echo json_encode($alerta);
+			exit();
+        }else{
+            $campos = $checkProducto->fetch();
+        }
+
+        $cantidad = mainModel::limpiar_cadena($_POST['detalle_cantidad']);
+        $valor_unitario = mainModel::limpiar_cadena($_POST['detalle_valor_unitario']);
+        $valor_total = mainModel::limpiar_cadena($_POST['detalle_valor_total']);
+
+          /** VALIDAR CAMPOS  */
+        if (    $cantidad == "" || 
+                $valor_unitario == "" || 
+                $valor_total == "" ){
+            $alerta = [
+				"Alerta" => "simple",
+				"Titulo" => "Ocurrió un error inesperado",
+				"Texto" => "No has llenado todos los campos que son obligatorios",
+				"Tipo" => "error"
+			];
+			echo json_encode($alerta);
+			exit();
+        }/** VALIDAR CAMPOS  */
+  
+
+
+    }
+
 }
