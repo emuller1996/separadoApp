@@ -36,8 +36,8 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                             
                             <td class="text-nowrap"><?php echo $row['producto_codigo'] ?></td>
                             <td><?php echo $row['producto_descripcion'] ?></td>
-                            <td><?php echo '$ '.number_format($row['producto_costo'],0,'','.'); ?></td>
-                            <td><?php echo '$ '.number_format($row['producto_precio'],0,'','.'); ?></td>
+                            <td class="text-nowrap"><?php echo '$ '.number_format($row['producto_costo'],0,'','.'); ?></td>
+                            <td class="text-nowrap"><?php echo '$ '.number_format($row['producto_precio'],0,'','.'); ?></td>
                             <td><?php echo $row['producto_existencia'] ?></td>
                             <td  class="text-nowrap" ><?php echo $row['producto_creado'] ?></td>
                             <td><span class="px-2 py-1 bg-primary rounded-pill text-white">

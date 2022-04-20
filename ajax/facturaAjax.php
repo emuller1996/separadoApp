@@ -8,7 +8,8 @@ $peticionAjax=true;
         isset($_POST['factura_cliente_id_del']) || 
         isset($_POST['buscar_producto']) || 
         isset($_POST['id_producto_agregar_factura']) || 
-        isset($_POST['id_eliminar_producto'])) {
+        isset($_POST['id_eliminar_producto'])|| 
+        isset($_POST['total_factura_reg'])) {
         require_once "../controllers/facturaControlador.php";
 		$ins_factura = new facturaControlador();
 
@@ -39,6 +40,11 @@ $peticionAjax=true;
         /** Eliminar Producto */
         if(isset($_POST['id_eliminar_producto'])){
             echo $ins_factura->eliminar_producto_factura_controlador();
+        }
+
+        /** Agregar Factura */
+        if(isset($_POST['total_factura_reg'])){
+            echo $ins_factura->agregar_factura_controlador();
         }
     }
 

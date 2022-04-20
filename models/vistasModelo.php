@@ -4,7 +4,11 @@
 
 		/*--------- Modelo obtener vistas ---------*/
 		protected static function obtener_vistas_modelo($vistas){
-			$listaBlanca=["home","Clientes","Login","Productos","Usuarios","usuario-nuevo","usuario-editar","producto-nuevo","Producto-Editar","cliente-nuevo","registrar-factura"];
+			$listaBlanca=["home","Clientes","Login",
+			"Productos","producto-nuevo","Producto-Editar","Usuarios",
+			"usuario-nuevo","usuario-editar",
+			"cliente-nuevo",
+			"registrar-factura","facturas-emitidas"];
 			if(in_array($vistas, $listaBlanca)){
 				if(is_file("./views/content/".$vistas."-view.php")){
 					$contenido="./views/content/".$vistas."-view.php";

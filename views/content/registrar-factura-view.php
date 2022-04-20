@@ -48,6 +48,9 @@
             </div>
         </form>
         <hr>
+        <div class="block text-center mb-2" style="font-size: 12px;">
+            Datos de Productos
+        </div>
         <button class="btn btn-info w-100 mb-3" data-toggle="modal" data-target="#modal_producto">
             <i class="fas fa-cart-plus mr-2"></i>
             Agregar Producto
@@ -55,9 +58,10 @@
         <div class="table-resposive">
             <table class="table table-bordered">
                 <thead>
-                    <th>Cantidad</th>
-                    <th>Codigo</th>
+
                     <th>Descripcion</th>
+                    <th>Codigo</th>
+                    <th>Cantidad</th>       
                     <th>Vr Unitario</th>
                     <th>Vr Total</th>
                     <th>&nbsp;</th>
@@ -72,12 +76,14 @@
                             
                     ?>
                             <tr>
-                                <td><?php echo $producto['Cantidad']; ?></td>
-                                <td><?php echo $producto['Codigo']; ?></td>
-                                <td><?php echo $producto['Descripcion']; ?></td>
-                                <td><?php echo '$ ' . number_format($producto['Valor_Unitario'], 0, '', '.'); ?></td>
-                                <td><?php echo '$ ' . number_format($producto['Valor_total'],0,'','.'); ?></td>
-                                <td>
+                                <td class="text-center"><?php echo $producto['Descripcion']; ?></td>
+                                <td class="text-center"><?php echo $producto['Codigo']; ?></td>
+                                <td class="text-center"><?php echo $producto['Cantidad']; ?></td>
+                                
+                                
+                                <td class="text-center"><?php echo '$ ' . number_format($producto['Valor_Unitario'], 0, '', '.'); ?></td>
+                                <td class="text-center"><?php echo '$ ' . number_format($producto['Valor_total'],0,'','.'); ?></td>
+                                <td class="text-center">
                                     <form action="<?php echo SERVERURL ?>ajax/facturaAjax.php" class="FormularioAjax" data-form="loans" method="POST">
                                         <input type="hidden" name="id_eliminar_producto" value="<?php echo $producto['ID'];?>">
                                         <button type="submit" class="btn btn-primary">
@@ -92,8 +98,10 @@
                         }
                         ?>
                         <tr>
-                            <td colspan="2" class="text-center font-weight-bold h4">Total Factura</td>
-                            <td colspan="3" class="text-center font-weight-bold h4">$ <?php echo number_format($_SESSION['factura_total'], 0, '', '.'); ?></td>
+                            <td colspan="2" class="text-center font-weight-bold h5">Total </td>
+                            <td colspan="1" class="text-center font-weight-bold h5"> <?php echo number_format($_SESSION['total_productos'], 0, '', '.');?></td>
+                            <td>&nbsp;</td>
+                            <td colspan="1" class="text-center font-weight-bold h5">$ <?php echo number_format($_SESSION['factura_total'], 0, '', '.'); ?></td>
                         </tr>
                     <?php
 
@@ -113,6 +121,12 @@
             </table>
             
         </div>
+        <form action="<?php echo SERVERURL ?>ajax/facturaAjax.php" class="FormularioAjax" data-form="save" method="POST">
+            <input type="hidden" name="total_factura_reg" id="total_factura_reg" value="<?php  if(isset($_SESSION['factura_total'])) echo $_SESSION['factura_total'] ; ?>">
+            <button class="btn btn-primary w-100" type="submit">
+                    Facturar
+            </button>
+        </form>
 
     </div>
 </div>
