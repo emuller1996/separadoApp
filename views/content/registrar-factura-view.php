@@ -60,8 +60,58 @@
                     <th>Descripcion</th>
                     <th>Vr Unitario</th>
                     <th>Vr Total</th>
+                    <th>&nbsp;</th>
                 </thead>
+                <tbody>
+                    <?php
+                    if (isset($_SESSION['datos_producto'])) {
+                        $_SESSION['factura_total'] = 0;
+                        $_SESSION['total_productos'] = 0;
+                        foreach ($_SESSION['datos_producto'] as $producto) {
+                            $subtotal = $producto['Cantidad'] * $producto['Valor_Unitario'];
+                            
+                    ?>
+                            <tr>
+                                <td><?php echo $producto['Cantidad']; ?></td>
+                                <td><?php echo $producto['Codigo']; ?></td>
+                                <td><?php echo $producto['Descripcion']; ?></td>
+                                <td><?php echo '$ ' . number_format($producto['Valor_Unitario'], 0, '', '.'); ?></td>
+                                <td><?php echo '$ ' . number_format($producto['Valor_total'],0,'','.'); ?></td>
+                                <td>
+                                    <form action="<?php echo SERVERURL ?>ajax/facturaAjax.php" class="FormularioAjax" data-form="loans" method="POST">
+                                        <input type="hidden" name="id_eliminar_producto" value="<?php echo $producto['ID'];?>">
+                                        <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-ban"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php
+                            $_SESSION['factura_total'] += $subtotal;
+                            $_SESSION['total_productos'] += $producto['Cantidad'];
+                        }
+                        ?>
+                        <tr>
+                            <td colspan="2" class="text-center font-weight-bold h4">Total Factura</td>
+                            <td colspan="3" class="text-center font-weight-bold h4">$ <?php echo number_format($_SESSION['factura_total'], 0, '', '.'); ?></td>
+                        </tr>
+                    <?php
+
+                    } else {
+                    ?>
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                No se han Seleccionado Productos para Realizar la Factura.
+                            </td>
+                        </tr>
+
+                    <?php
+                    }
+                    ?>
+
+                </tbody>
             </table>
+            
         </div>
 
     </div>
@@ -168,7 +218,7 @@
                         </div>
                         <div class="col-6">Valor Unitario</div>
                         <div class="col-6 mb-3">
-                            <input class="form-control" type="number" name="detalle_valor_unitario" id="detalle_valor_unitario">
+                            <input class="form-control" type="number" oninput="valor_total()" name="detalle_valor_unitario" id="detalle_valor_unitario">
                         </div>
                         <div class="col-6">Valor Total</div>
                         <div class="col-6 mb-3">

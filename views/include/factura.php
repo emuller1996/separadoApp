@@ -82,10 +82,18 @@
     function agregar_producto(id){
         $('#modal_producto').modal('hide');
         $('#modal_agregar_producto').modal('show');
-        $('#id_producto_agregar_factura').value=id;
+        document.querySelector('#id_producto_agregar_factura').setAttribute('value',id);
     }
     function modal_buscar_producto(id){
         $('#modal_agregar_producto').modal('hide');
         $('#modal_producto').modal('show');
+    }
+
+    function valor_total(){
+        
+
+        var total = $('#detalle_cantidad').val() * $('#detalle_valor_unitario').val();
+        
+        $('#detalle_valor_total').val(total)  ;
     }
 </script>

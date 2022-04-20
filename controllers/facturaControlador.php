@@ -207,9 +207,68 @@ class facturaControlador extends facturaModelo
 			echo json_encode($alerta);
 			exit();
         }/** VALIDAR CAMPOS  */
+
+
+
+        session_start(['name' => 'SPM']);
+
+        if(empty($_SESSION['datos_producto'][$id])){
+            $_SESSION['datos_producto'][$id] =[
+                'ID' => $campos['producto_id'],
+                'Codigo' =>$campos['producto_codigo'],
+                'Descripcion' =>$campos['producto_descripcion'],
+                'Valor_Unitario' =>$valor_unitario,
+                'Cantidad' =>$cantidad,
+                'Valor_total' =>$valor_total
+            ];
+
+
+            $alerta = [
+				"Alerta" => "recargar",
+				"Titulo" => "Producto Agregado.",
+				"Texto" => "El producto se ha agregado correctamente para la factura",
+				"Tipo" => "success"
+			];
+            echo json_encode($alerta);
+			exit();
+        }else{
+            $alerta = [
+				"Alerta" => "simple",
+				"Titulo" => "Producto Ya ha Sido Agregado.",
+				"Texto" => "El producto ya ha sido agregado, no se puede agregar nuevamente.",
+				"Tipo" => "error"
+			];
+            echo json_encode($alerta);
+			exit();
+
+        }
   
 
 
+    }
+
+    /** Eliminar Producto Factura Controlador*/
+    public function eliminar_producto_factura_controlador(){
+        $id = mainModel::limpiar_cadena($_POST['id_eliminar_producto']);
+        session_start(['name' => 'SPM']);
+        unset($_SESSION['datos_producto'][$id]);
+        if(empty($_SESSION['datos_producto'][$id])){
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Producto Eliminado",
+                "Texto" => "los datos del Producto se ha Eliminado con exito.",
+                "Tipo" => "success"
+            ];
+        }else{
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Error Producto Borrar",
+                "Texto" => "los datos del Producto  no se ha Eliminado con exito.",
+                "Tipo" => "error"
+            ];
+
+        }
+        echo json_encode($alerta);
     }
 
 }
