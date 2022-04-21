@@ -36,7 +36,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gestion Cliente</h6>
                 <a class="collapse-item" href="<?php echo SERVERURL?>Clientes/">Clientes</a>
-                <a class="collapse-item" href="cards.html">Separados Cliente</a>
+                <a class="collapse-item" href="<?php echo SERVERURL?>Separados/">Separados Cliente</a>
             </div>
         </div>
     </li>

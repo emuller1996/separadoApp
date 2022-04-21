@@ -10,9 +10,10 @@ class facturaModelo extends mainModel {
     {
         $sql = mainModel::conectar()->prepare(
             "INSERT INTO `facturas`( `factura_fecha`, `factura_total`, `factura_hora`, `factura_estado_estado`, `factura_estado`, `cliente_id`) 
-            VALUES (now(),:Total,now(),'CANCELADA',1,:Cliente_id)"
+            VALUES (now(),:Total,now(),:Estado,1,:Cliente_id)"
         );
         $sql->bindParam(":Total", $datos['Total']);
+        $sql->bindParam(":Estado", $datos['Estado']);
         $sql->bindParam(":Cliente_id", $datos['Cliente_id']);
         $sql->execute();
         return $sql;
@@ -37,14 +38,16 @@ class facturaModelo extends mainModel {
 
     }
 
-    public static function get_id_factura(){
+    public static function get_id_factura()
+    {
         $sql = mainModel::conectar()->prepare('SELECT COUNT(factura_id) FROM `facturas`');
         $sql->execute();
         return $sql->fetch();
     } 
 
 
-    protected function get_facturas_emitidas_hoy_modelo(){
+    protected function get_facturas_emitidas_hoy_modelo()
+    {
         $sql = mainModel::conectar()->prepare(
             "SELECT * FROM clientes  INNER JOIN facturas using(cliente_id) WHERE factura_fecha = CURDATE()"
         );
@@ -53,9 +56,51 @@ class facturaModelo extends mainModel {
     }
 
     /**Agregar Separado Factura */
-    protected function insertar_separado_factura_modelo($datos){
-
+    public function insertar_separado_factura_modelo($datos)
+    {
+        $sql = mainModel::conectar()->prepare(
+            "INSERT INTO `separados`( 
+                            `separado_fecha_inicio`, 
+                            `separado_fecha_vencimiento`,
+                            `separado_saldo`, 
+                            `separarado_estado_estado`, 
+                            `separado_abonado`, 
+                            `separado_estado`, 
+                            `separado_ultimo_valor_abono`, 
+                            `separado_ultimo_fecha_abono`, 
+                            `factura_id`) 
+            VALUES (
+                            NOW(),
+                            date_add(now(),INTERVAL 30 DAY),
+                            :Saldo,
+                            'PENDIENTE',
+                            :Abono,
+                            1,
+                            :Ultimo_Valor_Abono,
+                            NOW(),
+                            :Factura
+                            )"
+        );
+        $sql->bindParam(":Saldo", $datos['Saldo']);
+        $sql->bindParam(":Abono", $datos['Abono']);
+        $sql->bindParam(":Ultimo_Valor_Abono", $datos['Ultimo_Valor_Abono']);
+        $sql->bindParam(":Factura", $datos['Factura']);
+        $sql->execute();
+        return $sql;
         
+    }
+
+
+    /**INSERTAR ABONO SEPARADO FACTURA MODELO */
+    protected function insertar_abono_separado_factura_modelo($datos){
+        $sql = mainModel::conectar()->prepare(
+            "INSERT INTO `abonos`( `abono_valor`, `abono_fecha`, `separado_id`) 
+            VALUES (:Abono,now(),:Separado)"
+        );
+        $sql->bindParam(":Abono", $datos['Abono']);
+        $sql->bindParam(":Separado", $datos['Separado']);
+        $sql->execute();
+        return $sql;
     }
 
 

@@ -278,6 +278,7 @@ class facturaControlador extends facturaModelo
     {
         $total = mainModel::limpiar_cadena($_POST['total_factura_reg']);
         session_start(['name' => 'SPM']);
+        $estado_factura='CANCELADA';
 
         /**Validacion Campo */
         if( !isset($_SESSION['total_productos'] ) || !isset($_SESSION['datos_producto'])){
@@ -304,17 +305,27 @@ class facturaControlador extends facturaModelo
             echo json_encode($alerta);
             exit();
 
+        
+        
+        }
+
+        if($_POST['tipo_factura']=='SEPARADO'){
+            $estado_factura='PENDIENTE';
         }
 
 
         /** Datos para Registrar Factura */
         $datos_factura_reg = [
             'Total' =>$total,
+            'Estado' =>$estado_factura,
             'Cliente_id' => $_SESSION['datos_cliente']['ID']
         ];
 
+        /**Registro Factura  */
         $factura_insert = facturaModelo::insertar_factura_modelo($datos_factura_reg);
 
+
+        /** Validacion de la Sentencia */
         if($factura_insert->rowCount() != 1){
             $alerta = [
 				"Alerta" => "simple",
@@ -326,6 +337,7 @@ class facturaControlador extends facturaModelo
 			exit();
         }
 
+        //Obtener el ID de la Factura
         $n_factura = facturaModelo::get_id_factura();      
         $detalle_error= 0;
 
@@ -347,6 +359,45 @@ class facturaControlador extends facturaModelo
             }
         }
 
+        /**Datos Separado */
+
+        if($_POST['tipo_factura']=='SEPARADO'){
+            $saldo = mainModel::limpiar_cadena($_POST['separado_saldo_reg']);
+            $Abono = mainModel::limpiar_cadena($_POST['separado_abonado_reg']);
+
+            /**Datos de Separado Insert */
+            $datos_separado_insertar = [
+                'Saldo' =>$saldo,
+                'Abono' =>$Abono,
+                'Ultimo_Valor_Abono' =>$Abono,
+                'Factura'=> $n_factura['COUNT(factura_id)']
+            ];
+
+            $separado_insert =  facturaModelo::insertar_separado_factura_modelo($datos_separado_insertar);
+            if($separado_insert->rowCount() != 1){
+                $detalle_error++;
+            }else{
+                /** Datos Abono Separado */
+                $id_separado  = mainModel::ejecutar_consulta_simple("SELECT COUNT(separado_id) FROM separados");
+                $id_separado = $id_separado->fetch();
+
+                $datos_abono_insert = [
+                    'Abono' => $Abono,
+                    'Separado' =>$id_separado['COUNT(separado_id)']
+                ];
+
+                $abono_insert =  facturaModelo::insertar_abono_separado_factura_modelo($datos_abono_insert);
+
+                if($abono_insert->rowCount()!=1){
+                    $detalle_error++;
+                }
+            }
+
+
+        }
+
+
+
         if($detalle_error== 0){
             unset($_SESSION['datos_producto']);
             unset($_SESSION['datos_cliente']);
@@ -357,6 +408,12 @@ class facturaControlador extends facturaModelo
 				"Tipo" => "success"
 			];
         }else{
+            $alerta = [
+				"Alerta" => "simple",
+				"Titulo" => "Error al Facturar",
+				"Texto" => "la factura no se ha podido registrar.",
+				"Tipo" => "error"
+			];
 
         }
         echo json_encode($alerta);
