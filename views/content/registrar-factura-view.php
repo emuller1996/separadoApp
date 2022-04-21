@@ -55,13 +55,13 @@
             <i class="fas fa-cart-plus mr-2"></i>
             Agregar Producto
         </button>
-        <div class="table-resposive">
+        <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>
 
                     <th>Descripcion</th>
                     <th>Codigo</th>
-                    <th>Cantidad</th>       
+                    <th>Cantidad</th>
                     <th>Vr Unitario</th>
                     <th>Vr Total</th>
                     <th>&nbsp;</th>
@@ -73,21 +73,21 @@
                         $_SESSION['total_productos'] = 0;
                         foreach ($_SESSION['datos_producto'] as $producto) {
                             $subtotal = $producto['Cantidad'] * $producto['Valor_Unitario'];
-                            
+
                     ?>
                             <tr>
-                                <td class="text-center"><?php echo $producto['Descripcion']; ?></td>
-                                <td class="text-center"><?php echo $producto['Codigo']; ?></td>
+                                <td class="text-center text-nowrap"><?php echo $producto['Descripcion']; ?></td>
+                                <td class="text-center text-nowrap"><?php echo $producto['Codigo']; ?></td>
                                 <td class="text-center"><?php echo $producto['Cantidad']; ?></td>
-                                
-                                
-                                <td class="text-center"><?php echo '$ ' . number_format($producto['Valor_Unitario'], 0, '', '.'); ?></td>
-                                <td class="text-center"><?php echo '$ ' . number_format($producto['Valor_total'],0,'','.'); ?></td>
-                                <td class="text-center">
+
+
+                                <td class="text-center text-nowrap"><?php echo '$ ' . number_format($producto['Valor_Unitario'], 0, '', '.'); ?></td>
+                                <td class="text-center text-nowrap"><?php echo '$ ' . number_format($producto['Valor_total'], 0, '', '.'); ?></td>
+                                <td class="text-center text-nowrap">
                                     <form action="<?php echo SERVERURL ?>ajax/facturaAjax.php" class="FormularioAjax" data-form="loans" method="POST">
-                                        <input type="hidden" name="id_eliminar_producto" value="<?php echo $producto['ID'];?>">
+                                        <input type="hidden" name="id_eliminar_producto" value="<?php echo $producto['ID']; ?>">
                                         <button type="submit" class="btn btn-primary">
-                                        <i class="fas fa-ban"></i>
+                                            <i class="fas fa-ban"></i>
                                         </button>
                                     </form>
                                 </td>
@@ -99,7 +99,7 @@
                         ?>
                         <tr>
                             <td colspan="2" class="text-center font-weight-bold h5">Total </td>
-                            <td colspan="1" class="text-center font-weight-bold h5"> <?php echo number_format($_SESSION['total_productos'], 0, '', '.');?></td>
+                            <td colspan="1" class="text-center font-weight-bold h5"> <?php echo number_format($_SESSION['total_productos'], 0, '', '.'); ?></td>
                             <td>&nbsp;</td>
                             <td colspan="1" class="text-center font-weight-bold h5">$ <?php echo number_format($_SESSION['factura_total'], 0, '', '.'); ?></td>
                         </tr>
@@ -108,7 +108,7 @@
                     } else {
                     ?>
                         <tr>
-                            <td colspan="5" class="text-center">
+                            <td colspan="6" class="text-center">
                                 No se han Seleccionado Productos para Realizar la Factura.
                             </td>
                         </tr>
@@ -119,12 +119,55 @@
 
                 </tbody>
             </table>
-            
+
         </div>
+        <hr>
+        <div class="block text-center mb-2" style="font-size: 12px;">
+            Datos factura
+        </div>
+        <?php
+        require_once "./controllers/facturaControlador.php";
+        $ins_factura = new FacturaControlador();
+
+        $factura_id_id = $ins_factura->get_facturas_id_controlador();
+        ?>
         <form action="<?php echo SERVERURL ?>ajax/facturaAjax.php" class="FormularioAjax" data-form="save" method="POST">
-            <input type="hidden" name="total_factura_reg" id="total_factura_reg" value="<?php  if(isset($_SESSION['factura_total'])) echo $_SESSION['factura_total'] ; ?>">
+
+            <div class="row mb-4">
+                <div class="col-6">
+                    <div class="text-center">
+                        <span class="font-weight-bolder">FT - </span><?php echo  $factura_id_id['COUNT(factura_id)'] + 1; ?>
+                    </div>
+                </div>
+                <div class="col-6 text-center">
+
+                    <select class="form-control" name="tipo_factura" id="tipo_factura" oninput="separado_collapse()">
+                        <optgroup>
+                            <option  value="FACTURA">FACTURA</option>
+                            <option  value="SEPARADO">SEPARADO</option>
+                        </optgroup>
+                    </select>
+                </div>
+            </div>
+            <div class="collapse" id="collapseSeparado">
+                <div class="card card-body mb-4 border-info">
+                    <div class="row">
+                        <div class="col-12 text-center mb-3" style="font-size: 12px;">
+                            Datos Separado
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" oninput="valor_saldo()" type="text" name="separado_abonado_reg" id="separado_abonado_reg" placeholder="Valor Abonado">
+                        </div>
+                        <div class="col-6">
+                            <input class="form-control" type="text" name="separado_saldo_reg" id="separado_saldo_reg" placeholder="Valor Saldo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="total_factura_reg" id="total_factura_reg" value="<?php if (isset($_SESSION['factura_total'])) echo $_SESSION['factura_total']; ?>">
             <button class="btn btn-primary w-100" type="submit">
-                    Facturar
+                Facturar
             </button>
         </form>
 

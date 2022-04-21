@@ -90,10 +90,22 @@
     }
 
     function valor_total(){
-        
+        var total = $('#detalle_cantidad').val() * $('#detalle_valor_unitario').val();       
+        $('#detalle_valor_total').val(total) ;
+    }
 
-        var total = $('#detalle_cantidad').val() * $('#detalle_valor_unitario').val();
+    function separado_collapse(){
         
-        $('#detalle_valor_total').val(total)  ;
+        if($('#tipo_factura').val()==='SEPARADO'){
+            $('#collapseSeparado').collapse('show');
+        }else{
+            $('#collapseSeparado').collapse('hide');
+        }
+    }
+    function valor_saldo(){
+        var abonado = $('#separado_abonado_reg').val();
+        var tota_factura = $('#total_factura_reg').val();
+        var saldo = tota_factura - abonado; 
+        $('#separado_saldo_reg').val(saldo);
     }
 </script>

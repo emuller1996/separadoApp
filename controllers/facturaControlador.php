@@ -370,4 +370,13 @@ class facturaControlador extends facturaModelo
         return $listaFacturasEmitidas;
     }/**Fin Del Controlador*/
 
+
+    /**Obteer Codigo Factura  */
+    public function get_facturas_id_controlador(){
+        $n_factura = facturaModelo::get_id_factura();    
+        return $n_factura;
+    }
+
+    
+
 }

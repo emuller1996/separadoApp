@@ -37,7 +37,7 @@ class facturaModelo extends mainModel {
 
     }
 
-    protected function get_id_factura(){
+    public static function get_id_factura(){
         $sql = mainModel::conectar()->prepare('SELECT COUNT(factura_id) FROM `facturas`');
         $sql->execute();
         return $sql->fetch();
@@ -50,6 +50,12 @@ class facturaModelo extends mainModel {
         );
         $sql->execute();
         return $sql;
+    }
+
+    /**Agregar Separado Factura */
+    protected function insertar_separado_factura_modelo($datos){
+
+        
     }
 
 
