@@ -1,5 +1,5 @@
 <?php
-	const SERVERURL="http://192.168.1.11/separadoApp/";
+	const SERVERURL="http://192.168.0.25/separadoApp/";
 
 	const COMPANY="SISTEMAS SEPARADO";
 

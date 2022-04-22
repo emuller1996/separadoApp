@@ -51,7 +51,12 @@ class separadoControlador extends separadoModelo{
     public function insertar_abono_separado_controlador(){
         $separado_id = mainModel::limpiar_cadena($_POST['abono_separado_id_reg']);
         $valor_abono = mainModel::limpiar_cadena($_POST['abono_valor_reg']);
-
+        $separado_abonado_total = mainModel::limpiar_cadena($_POST['separado_abonado_total_reg']);
+        $separado_saldo_actual= mainModel::limpiar_cadena($_POST['separado_saldo_actual_reg']);
+        $factura_id= mainModel::limpiar_cadena($_POST['factura_id_h']);
+        $errors=0;
+        
+        $estado='PENDIENTE';
         if($separado_id=="" && $valor_abono=""){
             $alerta = [
 				"Alerta" => "simple",
@@ -67,6 +72,60 @@ class separadoControlador extends separadoModelo{
             'Valor'=> $valor_abono,
             'Separado' =>$separado_id
         ];
+
+        $abono_insert = separadoModelo::insertar_abono_separado_modelo($datos_abono_insert);
+
+        if($abono_insert->rowCount()!= 1){
+            $errors++;            
+        }
+
+        if($separado_saldo_actual==0){
+            $estado='PAGADO';
+            $factura_edir = separadoModelo::actualizar_factura_separado_abono_modelo($factura_id);
+            if($factura_edir->rowCount()!= 1){
+                $errors++;
+            } 
+        }
+        $datos_separado_edit = [
+            'Saldo' => $separado_saldo_actual,
+            'Estado'=> $estado,
+            'Abonado'=> $separado_abonado_total,
+            'Ultimo_Valor_Abono' => $valor_abono,
+            'Separado' => $separado_id                
+        ];
+
+        $separado_edit = separadoModelo::actualizar_saldo_separado($datos_separado_edit);
+
+        if($separado_edit->rowCount()!=1){
+            $errors++;
+            $alerta = [
+                "Alerta" => "al cargar separado",
+                "Titulo" => "Abono Registrado",
+                "Texto" => "Los datos del Abono han sido registrados con exito",
+                "Tipo" => "error"
+            ];
+        }
+        
+
+        if($errors==0){
+            $alerta = [
+                "Alerta" => "recargar",
+                "Titulo" => "Abono Registrado",
+                "Texto" => "Los datos del Abono han sido registrados con exito",
+                "Tipo" => "success"
+            ];
+
+        }else{
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Error al Registro del Abono",
+                "Texto" => "Los datos del usuario han sido registrados con exito",
+                "Tipo" => "error"
+            ];
+            
+        }
+
+        echo json_encode($alerta);
 
 
     }

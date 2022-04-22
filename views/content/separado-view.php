@@ -4,8 +4,6 @@ $ins_separarado_controlador = new separadoControlador();
 $separado_datos = $ins_separarado_controlador->get_separado_controlador($pagina[1]);
 $abonos_datos = $ins_separarado_controlador->get_abono_separado_controlador($pagina[1]);
 $cont_abono = 0;
-echo var_dump($abonos_datos);
-
 ?>
 <div class="card border-left-info shadow h-100 py-2">
     <div class="card-body">
@@ -106,6 +104,7 @@ echo var_dump($abonos_datos);
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Valor Abono</label>
                         <div class="col-sm-8">
+                        
                             <input type="hidden" name="abono_separado_id_reg" id="abono_separado_id_reg" value="<?php echo $separado_datos['separado_id']; ?>">
                             <input type="number" class="form-control" id="abono_valor_reg" oninput="valor_saldo_actual()" value="" name="abono_valor_reg">
                         </div>
@@ -113,9 +112,17 @@ echo var_dump($abonos_datos);
                     <div class="form-group row">
                         <label for="inputEmail3" class="col-sm-4 col-form-label">Saldo Actual</label>
                         <div class="col-sm-8">
-                            <input type="hidden" value="<?php echo $separado_datos['separado_saldo'] ?>" name="separado_saldo_h" id="separado_saldo_h">
-                            
-                            <input type="number" disabled class="form-control" id="separado_saldo_reg" name="separado_saldo_reg">
+                            <input type="hidden" disabled value="<?php echo $separado_datos['separado_saldo'] ?>" name="separado_saldo_h" id="separado_saldo_h">
+                            <input type="number"  class="form-control" id="separado_saldo_actual_reg" name="separado_saldo_actual_reg">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-4 col-form-label">Total Pagado</label>
+                        <div class="col-sm-8">
+                        
+                            <input type="hidden" disabled value="<?php echo $separado_datos['separado_abonado']; ?>" name="separado_abonado_h" id="separado_abonado_h">
+                            <input type="number" class="form-control" id="separado_abonado_total_reg" name="separado_abonado_total_reg">
+                            <input type="hidden"  value="<?php echo $separado_datos['factura_id']; ?>" name="factura_id_h" id="factura_id_h">
                         </div>
                     </div>
 
