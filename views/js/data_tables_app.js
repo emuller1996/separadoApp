@@ -1,8 +1,8 @@
 $(document).ready(function () {
-  const tables_data = document.querySelectorAll("#tableUsuario");
+  const tables_data = document.querySelectorAll("#data-table");
 
   tables_data.forEach((tables) => {
-    $("#tableUsuario").DataTable({
+    $("#data-table").DataTable({
       responsive: true,
       autoWidth: true,
       language: {
@@ -240,7 +240,7 @@ $(document).ready(function () {
           removeTitle: "Remover Estado",
           renameTitle: "Cambiar Nombre Estado",
         },
-      },
+      }
     });
   });
 

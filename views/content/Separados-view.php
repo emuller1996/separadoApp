@@ -12,7 +12,7 @@ $lista_separado = $ins_separado_controlador->listar_separados_controlador();
         <h5>Lista Separados</h5>
 
         <div class="table-responsive">
-            <table class="table-striped  table-bordered   table-hover" id="tableUsuario">
+            <table class="table-striped  table-bordered   table-hover" id="data-table">
                 <thead>
                     <th>ID </th>
                     <th>Fecha Inicio</th>

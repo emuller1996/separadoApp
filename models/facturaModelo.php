@@ -38,6 +38,7 @@ class facturaModelo extends mainModel {
 
     }
 
+    /**OBTENER ID DE ULTIMA FACTURA */
     public static function get_id_factura()
     {
         $sql = mainModel::conectar()->prepare('SELECT COUNT(factura_id) FROM `facturas`');
@@ -45,7 +46,7 @@ class facturaModelo extends mainModel {
         return $sql->fetch();
     } 
 
-
+    /** OBTENER FACTURAS HOY */
     protected function get_facturas_emitidas_hoy_modelo()
     {
         $sql = mainModel::conectar()->prepare(
@@ -99,6 +100,29 @@ class facturaModelo extends mainModel {
         );
         $sql->bindParam(":Abono", $datos['Abono']);
         $sql->bindParam(":Separado", $datos['Separado']);
+        $sql->execute();
+        return $sql;
+    }
+
+    /**OBTENER FACTURA POR FACTURA_ID MODELO*/
+    protected function get_factura_by_id_modelo($id){
+        $sql = mainModel::conectar()->prepare(
+            "SELECT * FROM clientes  INNER JOIN facturas using(cliente_id) where factura_id = :id;"
+        );
+        $sql->bindParam(":id",$id);
+        $sql->execute();
+        return $sql;
+    }
+
+    /**OBTENER DETALLES FACTURA MODELO */
+    protected function get_detalles_factura_modelo($id){
+        $sql = mainModel::conectar()->prepare(
+            "SELECT df.detalle_cantidad,p.producto_descripcion,df.detalle_valor_unitario,df.detalle_valor_total 
+            FROM facturas as f INNER JOIN detalles_facturas as df using(factura_id)
+            INNER JOIN productos as p using (producto_id)
+            WHERE factura_id = :id"
+        );
+        $sql->bindParam(":id",$id);
         $sql->execute();
         return $sql;
     }

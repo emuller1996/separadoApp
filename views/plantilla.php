@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="<?php echo SERVERURL ?>views/css/sweetalert2.min.css">
     <script src="<?php echo SERVERURL ?>views/js/sweetalert2.min.js"></script>
 
+    <!-- Data Tables-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>    
+
 </head>
 
 <body id="page-top">
@@ -133,9 +136,8 @@
 
     <script src="<?php echo SERVERURL ?>views/js/alertas.js"></script>
 
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
-
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+    
     <script src="<?php  echo SERVERURL ?>views/js/data_tables_app.js"></script>
 </body>
 

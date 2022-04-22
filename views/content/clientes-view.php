@@ -4,13 +4,13 @@ $ins_cliente_controlador = new clienteControlador();
 $lista_clientes = $ins_cliente_controlador->listar_clientes_controlador();
 
 ?>
-<div class="card shadow">
+<div class="card border-left-danger shadow">
     <div class="card-header">
-        <h6 class="m-0 font-weight-bold text-primary text-center">Lista Clientes</h6>
+        <h6 class="m-0 font-weight-bold text-primary text-center text-danger">Lista Clientes</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover table-bordered" id="tableUsuario">
+            <table class="table-hover table-striped table-bordered" id="data-table">
                 <thead>
                     <th>Documento</th>
                     <th>Nombre</th>
@@ -33,12 +33,12 @@ $lista_clientes = $ins_cliente_controlador->listar_clientes_controlador();
                             <td><?php echo $cliente['cliente_correo']; ?></td>
                             <td><?php echo $cliente['cliente_telefono']; ?></td>
                             <td>ACTIVO</td>
-                            <td>
+                            <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="<?php echo SERVERURL . "cliente-editar/" . mainModel::encryption($cliente['cliente_id']); ?>" class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                                    <a href="<?php echo SERVERURL . "cliente-editar/" . mainModel::encryption($cliente['cliente_id']); ?>" class="btn btn-sm  btn-warning"><i class="fas fa-edit"></i></a>
                                     <form action="<?php echo SERVERURL ?>ajax/productoAjax.php" class="overflow-hidden FormularioAjax" data-form="dalete" method="post">
                                         <input type="hidden" value="" name="producto_id_del">
-                                        <button type="submit" class="btn btn-danger">
+                                        <button type="submit" class="btn btn-sm btn-danger">
                                             <i class="fas fa-trash-alt"></i>
                                         </button>
                                     </form>

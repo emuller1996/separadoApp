@@ -420,18 +420,35 @@ class facturaControlador extends facturaModelo
     }/**Fin Del Controlador*/
 
     /**Obtener Facturas Emitidas Hoy Controlador */
-    public function get_facturas_emitidas_hoy_controlador(){
+    public function get_facturas_emitidas_hoy_controlador()
+    {
         
         $sql = facturaModelo::get_facturas_emitidas_hoy_modelo();
         $listaFacturasEmitidas = $sql->fetchAll(PDO::FETCH_ASSOC);
         return $listaFacturasEmitidas;
     }/**Fin Del Controlador*/
 
-
     /**Obteer Codigo Factura  */
-    public function get_facturas_id_controlador(){
+    public function get_facturas_id_controlador()
+    {
         $n_factura = facturaModelo::get_id_factura();    
         return $n_factura;
+    }
+    /** OBTENER FACTURA POR FACTURA_ID CONTROLADOR*/
+    public function get_factura_by_id_controlador($id)
+    {
+        $factura_id = mainModel::limpiar_cadena($id);
+        $factura = facturaModelo::get_factura_by_id_modelo($factura_id);
+        $factura = $factura->fetch(PDO::FETCH_ASSOC);
+        return $factura;
+    }
+
+    /**OBTENER DETALLES FACTURA CONTROLADOR */
+    public function get_detalles_factura_controlador($id){
+        $factura_id = mainModel::limpiar_cadena($id);
+        $detalles_factura = facturaModelo::get_detalles_factura_modelo($factura_id);
+        $detalles_factura = $detalles_factura->fetchAll(PDO::FETCH_ASSOC);
+        return $detalles_factura;
     }
 
     

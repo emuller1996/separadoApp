@@ -15,7 +15,7 @@ $total_factura_emitidas = 0;
     </div>
     <div class="card-body">
         <div class="table-responsive ">
-            <table class="table table-light table-bordered table-striped">
+            <table id="data-table" class="table table-light table-bordered table-striped">
                 <thead>
                     <th>Codigo Factura</th>
                     <th>Hora</th>
@@ -33,6 +33,13 @@ $total_factura_emitidas = 0;
                                 <td class="text-nowrap"><?php echo $factura['cliente_nombre']; ?></td>
                                 <td class="text-nowrap"><?php echo $factura['factura_estado_estado']; ?></td>
                                 <td class="text-nowrap">$ <?php echo number_format($factura['factura_total'], 0, '', '.'); ?></td>
+                                <td>
+                                    <a  href="<?php echo SERVERURL ?>ver-factura/<?php echo $factura['factura_id']?>" 
+                                        class="btn btn-dark"
+                                    >
+                                        <i class="fas fa-eye"></i>
+                                    </a>
+                                </td>
                             </tr>
 
                         <?php

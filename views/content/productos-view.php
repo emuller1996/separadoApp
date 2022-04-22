@@ -5,22 +5,21 @@ $ins_productos_controlador = new productosControlador();
 $datos = $ins_productos_controlador->producto_all_controlador();
 ?>
 
-<div class="card p-2 bg-light rounded">
+<div class="card  border-left-info  rounded">
     <div class="card-header">
-        <div class="text-center fw-bold text-primary font-weight-bold m-0">
+        <div class="text-center fw-bold text-info font-weight-bold m-0">
             Lista Productos.
         </div>
     </div>
     <div class="card-body">
         <div class="flex mb-2">
-            <a href="<?php echo SERVERURL ?>producto-nuevo" class="btn btn-danger">
+            <a href="<?php echo SERVERURL ?>producto-nuevo" class="btn btn-info py-3 w-100 mb-2">
                 <i class="fas fa-plus-circle mr-2"></i>NUEVO PRODUCTO
             </a>
         </div>
         <div class="table-responsive">
-            <table id="tableUsuario" class="table-striped table-bordered table-hover">
+            <table id="data-table" class="table-striped table-bordered table-hover w-100">
                 <thead>
-                    
                     <th >Codigo</th>
                     <th>Description</th>
                     <th>Costo</th>
