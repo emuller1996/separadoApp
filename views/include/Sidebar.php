@@ -2,10 +2,11 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?php echo SERVERURL?> ">
-        <div class="sidebar-brand-icon rotate-n-15">
+       <!--  <div class="sidebar-brand-icon rotate-n-15">
         <i class="fas fa-cannabis"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">S-App <sup>2</sup></div>
+        <div class="sidebar-brand-text mx-3">S-App <sup>2</sup></div> -->
+        <img src="<?php echo SERVERURL?>views/img/logo_empresa.png" class="img-fluid "alt="" srcset="">
     </a>
 
     <!-- Divider -->
