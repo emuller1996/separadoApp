@@ -30,7 +30,7 @@ $detalles_factura = $ins_factura->get_detalles_factura_controlador($pagina[1]);
         </div>
         <hr>
         <div class="block text-center mb-2" style="font-size: 12px;">Detalles Factura</div>
-        <div class="row border border-primary rounded ">
+        <div class="border border-primary rounded ">
             <div class="table-responsive">
                 <table class=" w-100 table-hover text-center">
                     <thead>
@@ -40,18 +40,24 @@ $detalles_factura = $ins_factura->get_detalles_factura_controlador($pagina[1]);
                         <th>Vr Total</th>
                     </thead>
                     <tbody>
-                        <?php foreach($detalles_factura as $detalle){ ?>
-                        <tr>
-                            <td class="text-nowrap text-center"><?php echo $detalle['detalle_cantidad']; ?></td>
-                            <td class="text-nowrap text-center"><?php echo $detalle['producto_descripcion']; ?></td>
-                            <td class="text-nowrap text-center"><?php echo $detalle['detalle_valor_unitario']; ?></td>
-                            <td class="text-nowrap text-center"><?php echo $detalle['detalle_valor_total']; ?></td>
-                        </tr>
+                        <?php foreach ($detalles_factura as $detalle) { ?>
+                            <tr>
+                                <td class="text-nowrap text-center"><?php echo $detalle['detalle_cantidad']; ?></td>
+                                <td class="text-nowrap text-center"><?php echo $detalle['producto_descripcion']; ?></td>
+                                <td class="text-nowrap text-center"><?php echo $detalle['detalle_valor_unitario']; ?></td>
+                                <td class="text-nowrap text-center"><?php echo $detalle['detalle_valor_total']; ?></td>
+                            </tr>
                         <?php } ?>
                     </tbody>
                 </table>
             </div>
-            
+        </div>
+        <div class="row mt-3">
+            <div class="col-12">
+                <a class="btn btn-success w-100 font-weight-bold " href="<?php echo SERVERURL ?>facturas/factura_ticket.php?id=<?php echo $factura['factura_id']; ?>">
+                    <i class="fas fa-print mr-2"></i> IMPRIMIR FACTURA.
+                </a>
+            </div>
         </div>
     </div>
 </div>

@@ -84,7 +84,7 @@
                 <h6 class="collapse-header">Gestion Facturacion</h6>
                 <a class="collapse-item" href="<?php echo SERVERURL?>registrar-factura/">Registrar Factura</a>
                 <a class="collapse-item" href="<?php echo SERVERURL?>facturas-emitidas/">Factura Emitidas</a>
-                <a class="collapse-item" href="#">Reportes</a>
+                <a class="collapse-item" href="<?php echo SERVERURL?>facturas-buscar/">Factura por Fecha</a>
             </div>
         </div>
     </li>

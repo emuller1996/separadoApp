@@ -20,17 +20,20 @@ $pdf = new FPDF('P','mm',array(80,120));
 	$pdf->SetFont('Arial','',15);
 	$pdf->SetTextColor(0,107,181);
 	$pdf->Cell(0,20,utf8_decode(""),0,0,'C');
-	$pdf->SetFont('Arial','',12);
+	$pdf->SetFont('Arial','',15);
 	$pdf->SetTextColor(97,97,97);
-	$pdf->Cell(-30,20,utf8_decode("FT - ".$datos_factura['factura_id']),'',0,'C');
+	$pdf->Cell(-25,15,utf8_decode("FT - ".$datos_factura['factura_id']),'',0,'C');
 	
 	$pdf->Ln(15);
 
 	$pdf->SetFont('Arial','',9);
 	$pdf->SetTextColor(33,33,33);
-	$pdf->Cell(30,8,utf8_decode('Fecha de emisión:'),0,0);
+	$pdf->Cell(27,8,utf8_decode('Fecha de emisión:'),0,0);
 	$pdf->SetTextColor(97,97,97);
-	$pdf->Cell(28,8,utf8_decode(date("d/m/Y", strtotime($datos_factura['factura_fecha']))),0,0);
+	$pdf->Cell(20,8,utf8_decode(date("d/m/Y", strtotime($datos_factura['factura_fecha']))),0,0);
+	$pdf->Cell(11,8,utf8_decode('HORA:'),0,0);
+	$pdf->SetTextColor(97,97,97);
+	$pdf->Cell(20,8,utf8_decode(date("h:m", strtotime($datos_factura['factura_hora']))),0,0);
 	
 	$pdf->Ln(4);
 

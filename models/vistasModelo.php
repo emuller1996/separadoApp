@@ -8,7 +8,7 @@
 			"Productos","producto-nuevo","Producto-Editar","Usuarios",
 			"usuario-nuevo","usuario-editar",
 			"cliente-nuevo",
-			"registrar-factura","facturas-emitidas","ver-factura",
+			"registrar-factura","facturas-emitidas","ver-factura","facturas-buscar","facturas-por-fecha",
 			"Separados","separado"];
 			if(in_array($vistas, $listaBlanca)){
 				if(is_file("./views/content/".$vistas."-view.php")){

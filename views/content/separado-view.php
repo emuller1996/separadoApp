@@ -55,9 +55,11 @@ $cont_abono = 0;
                     <th>Fecha</th>
                     <th>Valor</th>
                     <th width="10px">
-                        <button class="btn btn-info" data-toggle="modal" data-target="#abonoModal">
+                        
+                        <button <?php if($separado_datos['separado_saldo']==0) echo 'disabled'?> class="btn btn-info" data-toggle="modal" data-target="#abonoModal">
                             <i class="fas fa-plus-circle"></i>
                         </button>
+
                     </th>
                 </thead>
                 <tbody>

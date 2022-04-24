@@ -444,12 +444,53 @@ class facturaControlador extends facturaModelo
     }
 
     /**OBTENER DETALLES FACTURA CONTROLADOR */
-    public function get_detalles_factura_controlador($id){
+    public function get_detalles_factura_controlador($id)
+    {
         $factura_id = mainModel::limpiar_cadena($id);
         $detalles_factura = facturaModelo::get_detalles_factura_modelo($factura_id);
         $detalles_factura = $detalles_factura->fetchAll(PDO::FETCH_ASSOC);
         return $detalles_factura;
     }
+
+
+    /** Buscar Factura por Fechas */
+    public function buscar_factura_por_fechas_controlador()
+    {
+
+        $fecha_inicio = mainModel::limpiar_cadena($_POST['factura_buscar_fecha_inicio']);
+        $fecha_fin = mainModel::limpiar_cadena($_POST['factura_buscar_fecha_fin']);
+
+        /**Validacion de Campos */
+        if($fecha_fin ==""  || $fecha_inicio == ""){
+            $alerta = [
+				"Alerta" => "simple",
+				"Titulo" => "Error en la validacion de datos",
+				"Texto" => "las fechas son obligatorias, por favor rellene los campos.",
+				"Tipo" => "error"
+			];
+			echo json_encode($alerta);
+			exit();
+            
+        }
+        $alerta = [
+            "Alerta" => "redireccionar",
+            "URL" => SERVERURL. "facturas-por-fecha/".$fecha_inicio."/".$fecha_fin
+            
+        ];
+        echo json_encode($alerta);
+    }
+
+    /**  */
+    public function listar_facturas_por_fecha_controlador($inicio,$fin){
+        $fecha_inicio = mainModel::limpiar_cadena($inicio);
+        $fecha_fin = mainModel::limpiar_cadena($fin);
+
+        $sql = facturaModelo::listar_facturas_por_fecha_modelo($fecha_inicio,$fecha_fin);
+        $listaFacturas =$sql->fetchAll(PDO::FETCH_ASSOC);
+        return $listaFacturas;
+    }
+
+
 
     
 

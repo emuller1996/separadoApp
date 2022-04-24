@@ -115,7 +115,8 @@ class facturaModelo extends mainModel {
     }
 
     /**OBTENER DETALLES FACTURA MODELO */
-    protected function get_detalles_factura_modelo($id){
+    protected function get_detalles_factura_modelo($id)
+    {
         $sql = mainModel::conectar()->prepare(
             "SELECT df.detalle_cantidad,p.producto_descripcion,df.detalle_valor_unitario,df.detalle_valor_total 
             FROM facturas as f INNER JOIN detalles_facturas as df using(factura_id)
@@ -125,6 +126,17 @@ class facturaModelo extends mainModel {
         $sql->bindParam(":id",$id);
         $sql->execute();
         return $sql;
+    }
+
+    protected function listar_facturas_por_fecha_modelo($inicio,$fin){
+        $sql = mainModel::conectar()->prepare(
+            "SELECT * FROM clientes  INNER JOIN facturas using(cliente_id) where factura_fecha BETWEEN :Inicio AND :Fin"
+        );
+        $sql->bindParam(":Inicio",$inicio);
+        $sql->bindParam(":Fin",$fin);
+        $sql->execute();
+        return $sql; 
+
     }
 
 

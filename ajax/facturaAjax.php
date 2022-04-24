@@ -9,7 +9,8 @@ $peticionAjax=true;
         isset($_POST['buscar_producto']) || 
         isset($_POST['id_producto_agregar_factura']) || 
         isset($_POST['id_eliminar_producto'])|| 
-        isset($_POST['total_factura_reg'])) {
+        isset($_POST['total_factura_reg'])|| 
+        isset($_POST['factura_buscar_fecha_inicio'])) {
         require_once "../controllers/facturaControlador.php";
 		$ins_factura = new facturaControlador();
 
@@ -45,6 +46,11 @@ $peticionAjax=true;
         /** Agregar Factura */
         if(isset($_POST['total_factura_reg'])){
             echo $ins_factura->agregar_factura_controlador();
+        }
+
+        /**Buscar Factura Por Fechas */
+        if(isset($_POST['factura_buscar_fecha_inicio'])){
+            echo $ins_factura->buscar_factura_por_fechas_controlador();
         }
     }
 
