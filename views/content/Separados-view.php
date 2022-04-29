@@ -12,7 +12,7 @@ $lista_separado = $ins_separado_controlador->listar_separados_controlador();
         <h5>Lista Separados</h5>
 
         <div class="table-responsive">
-            <table class="table-striped  table-bordered   table-hover" id="data-table">
+            <table class="table-striped bg-light rounded border table-hover" id="data-table">
                 <thead>
                     <th>ID </th>
                     <th>Fecha Inicio</th>
@@ -29,7 +29,7 @@ $lista_separado = $ins_separado_controlador->listar_separados_controlador();
                 <tbody>
                     <?php foreach ($lista_separado as $separado ) {?>
 
-                        <tr>
+                        <tr class="<?php if($separado['separado_fecha_vencimiento']== getdate()){ echo 'bg-danger';}else{echo 'bg-success';}  ?>">
                             <td class="text-nowrap"><?php echo $separado['separado_id'] ?></td>
                             <td class="text-nowrap"><?php echo $separado['separado_fecha_inicio'] ?></td>
                             <td class="text-nowrap"><?php echo $separado['separado_fecha_vencimiento'] ?></td>

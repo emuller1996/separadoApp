@@ -7,6 +7,7 @@
 			$listaBlanca=["home","Clientes","Login",
 			"Productos","producto-nuevo","Producto-Editar","Usuarios",
 			"usuario-nuevo","usuario-editar",
+			"Rubros",
 			"cliente-nuevo",
 			"registrar-factura","facturas-emitidas","ver-factura","facturas-buscar","facturas-por-fecha",
 			"Separados","separado"];

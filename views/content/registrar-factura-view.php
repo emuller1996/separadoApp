@@ -4,38 +4,39 @@
         <hr>
 
         <form action="<?php echo SERVERURL ?>ajax/facturaAjax.php" class="FormularioAjax" data-form="loans" method="POST">
-            <div class="row g-4">
-                <div class="col-12 text-sm text-center mb-2" style="font-size: 12px;">
+        <div class="block text-sm text-center mb-2" style="font-size: 12px;">
                     Datos Cliente
                 </div>
+            <div class="row">
+                
 
 
                 <?php if (empty($_SESSION['datos_cliente'])) { ?>
 
-                    <div class="col-lg-3 col-md-4 col-sm-4">
-                        <input name="factura_cliente_documento" id="factura_cliente_documento" class="user form-control" value="" type="number" placeholder="Documento">
+                    <div class="col-lg-4 col-md-4 col-sm-4 mb-2">
+                        <input readonly name="factura_cliente_documento" id="factura_cliente_documento" class="user form-control" value="" type="number" placeholder="Documento">
                     </div>
-                    <div class="col-lg-8 col-md-6 col-sm-6">
-                        <input class="user form-control" type="text" value="" placeholder="Nombre del Cliente">
+                    <div class="col-lg-8 col-md-8 col-sm-8 mb-2">
+                        <input  readonly class="user form-control" type="text" value="" placeholder="Nombre del Cliente">
                     </div>
-                    <div class="col-2 col-lg-1">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_cliente">
-                            <i class="fas fa-search mr-2"></i>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-primary w-100" data-toggle="modal" data-target="#modal_cliente">
+                            <i class="fas fa-search mr-2"></i>Buscar Cliente
                         </button>
                     </div>
 
 
                 <?php } else { ?>
 
-                    <div class="col-lg-3 col-md-4 col-sm-4">
+                    <div class="col-lg-4 col-md-4 col-sm-4 mb-2">
                         <input type="hidden" name="factura_cliente_id_del" value="<?php echo $_SESSION['datos_cliente']['ID'] ?>">
                         <input name="factura_cliente_documento" disabled id="factura_cliente_documento" class="user form-control" value="<?php echo $_SESSION['datos_cliente']['Documento'] ?>" type="number" placeholder="Documento">
                     </div>
-                    <div class="col-lg-8 col-md-6 col-sm-6">
+                    <div class="col-lg-8 col-md-8 col-sm-8 mb-2">
                         <input class="user form-control" type="text" disabled value="<?php echo $_SESSION['datos_cliente']['Nombre'] ?>" placeholder="Nombre del Cliente">
                     </div>
-                    <div class="col-2 col-lg-1">
-                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#">
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-danger w-100" data-toggle="modal" data-target="#">
                             <i class="fas fa-trash-alt mr-2"></i>
 
                         </button>
@@ -166,8 +167,8 @@
             </div>
 
             <input type="hidden" name="total_factura_reg" id="total_factura_reg" value="<?php if (isset($_SESSION['factura_total'])) echo $_SESSION['factura_total']; ?>">
-            <button class="btn btn-primary w-100" type="submit">
-                Facturar
+            <button class="btn btn-success w-100" type="submit">
+            <i class="fas fa-check-double mr-2"></i> Facturar
             </button>
         </form>
 
@@ -188,11 +189,11 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="" method="post" >
                     <div class="row">
                         <div class="col-12 mb-2">
                             <div class="text-center fs-6 mb-2">Ingrese el codigo, documento o nombre del Cliente para realizar la busqueda.</div>
-                            <input name="input_cliente" oninput="buscar_cliente()" id="input_cliente" type="text" class="form-control" placeholder="Ingresa Aqui ">
+                            <input autocomplete="off" name="input_cliente" oninput="buscar_cliente()" id="input_cliente" type="text" class="form-control" placeholder="Ingresa Aqui ">
                         </div>
                         <div class="col-12">
                             <button type="button" onclick="buscar_cliente()" class="btn btn-primary w-100">
@@ -231,7 +232,7 @@
                     <div class="row">
                         <div class="col-12 mb-2">
                             <div class="text-center fs-6 mb-2">Ingrese el codigo o descripcion del Producto para realizar la busqueda.</div>
-                            <input name="input_producto" oninput="buscar_producto()" id="input_producto" type="text" class="form-control" placeholder="Ingresa Aqui ">
+                            <input  autocomplete="off" name="input_producto" oninput="buscar_producto()" id="input_producto" type="text" class="form-control" placeholder="Ingresa Aqui ">
                         </div>
                         <div class="col-12">
                             <button type="button" onclick="buscar_producto()" class="btn btn-primary w-100">

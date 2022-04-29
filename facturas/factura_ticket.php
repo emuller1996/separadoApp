@@ -1,11 +1,18 @@
 <?php 
 require "./fpdf.php";
+require_once "../config/APP.php";
 $peticionAjax = true;
 $id = $_GET['id'];
 require_once "../controllers/facturaControlador.php";
 $ins_factura = new facturaControlador();
 $datos_factura = $ins_factura->get_factura_by_id_controlador($id);
 $detalles_factura = $ins_factura->get_detalles_factura_controlador($id);
+
+session_start(['name' => 'SPM']);
+
+if(empty($_SESSION['id_spm'])){
+	header('location:' . SERVERURL);
+}
 
 
 $pdf = new FPDF('P','mm',array(80,120));

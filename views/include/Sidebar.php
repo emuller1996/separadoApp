@@ -27,7 +27,7 @@
         Cliente
     </div>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - CLIENTES -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-user-friends"></i>
@@ -42,7 +42,7 @@
         </div>
     </li>
 
-
+    <!-- Nav Item - PRODUCTOS -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTree" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-tshirt"></i>
@@ -52,13 +52,12 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Gestion Productos</h6>
                 <a class="collapse-item" href="<?php echo SERVERURL?>Productos/">Productos</a>
-                <a class="collapse-item" href="#">Rubro Productos</a>
                 <a class="collapse-item" href="#">Reportes Productos</a>
             </div>
         </div>
     </li>
 
-
+    <!-- Nav Item - USUARIOS -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-user"></i>
@@ -74,6 +73,7 @@
         </div>
     </li>
 
+    <!-- Nav Item - FACTURACION -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFac" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-cash-register"></i>
@@ -85,6 +85,21 @@
                 <a class="collapse-item" href="<?php echo SERVERURL?>registrar-factura/">Registrar Factura</a>
                 <a class="collapse-item" href="<?php echo SERVERURL?>facturas-emitidas/">Factura Emitidas</a>
                 <a class="collapse-item" href="<?php echo SERVERURL?>facturas-buscar/">Factura por Fecha</a>
+            </div>
+        </div>
+    </li>
+
+    <!-- Nav Item - CAJA -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCaja" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-coins"></i>
+            <span> Movimientos Caja</span>
+        </a>
+        <div id="collapseCaja" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Movimientos de Caja</h6>
+                <a class="collapse-item" href="<?php echo SERVERURL?>caja-hoy/">Caja</a>
+                <a class="collapse-item" href="<?php echo SERVERURL?>caja-periodica/">Caja Periodica</a>
             </div>
         </div>
     </li>

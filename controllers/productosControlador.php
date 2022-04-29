@@ -27,6 +27,7 @@ class productosControlador extends productoModelo
 		$producto_descripcion = mainModel::limpiar_cadena($_POST['producto_descripcion_reg']);
 		$producto_costo = mainModel::limpiar_cadena($_POST['producto_costo_reg']);
 		$producto_precio = mainModel::limpiar_cadena($_POST['producto_precio_reg']);
+		$rubro_id = mainModel::limpiar_cadena($_POST['producto_rubro_reg']);
 
 		if ($producto_codigo == "" || $producto_existencia == "" || $producto_descripcion == "" || $producto_costo == "" || $producto_precio == "") {
 			$alerta = [
@@ -57,7 +58,8 @@ class productosControlador extends productoModelo
 			"Descripcion" => $producto_descripcion,
 			"Costo" => $producto_costo,
 			"Precio" => $producto_precio,
-			"Existencia" => $producto_existencia
+			"Existencia" => $producto_existencia,
+			"Rubro" =>$rubro_id
 		];
 
 		$agregar_producto = productoModelo::insertar_producto_modelo($datos_producto_reg);
@@ -65,9 +67,9 @@ class productosControlador extends productoModelo
 
 		if ($agregar_producto->rowCount() == 1) {
 			$alerta = [
-				"Alerta" => "limpiar",
-				"Titulo" => "usuario registrado",
-				"Texto" => "Los datos del usuario han sido registrados con exito",
+				"Alerta" => "recargar",
+				"Titulo" => "Producto registrado",
+				"Texto" => "Los datos del producto han sido registrados con exito en la base de datos.",
 				"Tipo" => "success"
 			];
 		} else {

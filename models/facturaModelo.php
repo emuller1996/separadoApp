@@ -105,7 +105,8 @@ class facturaModelo extends mainModel {
     }
 
     /**OBTENER FACTURA POR FACTURA_ID MODELO*/
-    protected function get_factura_by_id_modelo($id){
+    protected function get_factura_by_id_modelo($id)
+    {
         $sql = mainModel::conectar()->prepare(
             "SELECT * FROM clientes  INNER JOIN facturas using(cliente_id) where factura_id = :id;"
         );
@@ -128,9 +129,10 @@ class facturaModelo extends mainModel {
         return $sql;
     }
 
-    protected function listar_facturas_por_fecha_modelo($inicio,$fin){
+    protected function listar_facturas_por_fecha_modelo($inicio,$fin)
+    {
         $sql = mainModel::conectar()->prepare(
-            "SELECT * FROM clientes  INNER JOIN facturas using(cliente_id) where factura_fecha BETWEEN :Inicio AND :Fin"
+            "SELECT * FROM clientes  INNER JOIN facturas using(cliente_id) WHERE factura_fecha BETWEEN :Inicio AND :Fin ORDER BY factura_id ASC"
         );
         $sql->bindParam(":Inicio",$inicio);
         $sql->bindParam(":Fin",$fin);

@@ -21,6 +21,7 @@ $total_factura_emitidas = 0;
                 <thead>
                     <th>Codigo Factura</th>
                     <th>Hora</th>
+                    <th>Fecha</th>
                     <th>Cliente</th>
                     <th>Estado</th>
                     <th>Total</th>
@@ -31,8 +32,9 @@ $total_factura_emitidas = 0;
                     if (isset($listaFacturasEmitidas)) {
                         foreach ($listaFacturasEmitidas as $factura) { ?>
                             <tr>
-                                <td class="text-nowrap">FT-<?php echo $factura['factura_id']; ?></td>
-                                <td class="text-nowrap"><?php echo  $factura['factura_hora']  ?></td>
+                                <td width="0.75rem" class="text-nowrap">FT-<?php echo $factura['factura_id']; ?></td>
+                                <td width="0.75rem" class="text-nowrap"><?php echo  date("h:m", strtotime($factura['factura_hora']));  ?></td>
+                                <td class="text-nowrap"><?php echo  $factura['factura_fecha']  ?></td>
                                 <td class="text-nowrap"><?php echo $factura['cliente_nombre']; ?></td>
                                 <td class="text-nowrap"><?php echo $factura['factura_estado_estado']; ?></td>
                                 <td class="text-nowrap">$ <?php echo number_format($factura['factura_total'], 0, '', '.'); ?></td>

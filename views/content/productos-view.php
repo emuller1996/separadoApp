@@ -13,13 +13,13 @@ $datos = $ins_productos_controlador->producto_all_controlador();
     </div>
     <div class="card-body">
         <div class="row mb-2">
-            <div class="col-3">
+            <div class="col-xl-3 col-md-6 col-sm-12">
                 <a href="<?php echo SERVERURL ?>producto-nuevo" class="btn btn-info py-3 w-100 mb-2">
                     <i class="fas fa-plus-circle mr-2"></i>NUEVO PRODUCTO
                 </a>
             </div>
-            <div class="col-3">
-                <a href="<?php echo SERVERURL ?>lista-rubros" class="btn btn-warning py-3 w-100 mb-2">
+            <div class="col-xl-3 col-md-6 col-sm-12">
+                <a href="<?php echo SERVERURL ?>Rubros" class="btn btn-warning py-3 w-100 mb-2">
                 <i class="fas fa-tasks mr-2"></i>GESTION RUBRO
                 </a>
             </div>

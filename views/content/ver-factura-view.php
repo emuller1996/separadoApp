@@ -54,10 +54,16 @@ $detalles_factura = $ins_factura->get_detalles_factura_controlador($pagina[1]);
         </div>
         <div class="row mt-3">
             <div class="col-12">
-                <a class="btn btn-success w-100 font-weight-bold " href="<?php echo SERVERURL ?>facturas/factura_ticket.php?id=<?php echo $factura['factura_id']; ?>">
+                <a class="btn btn-success w-100 font-weight-bold" href="javascript:ventanaSecundaria('<?php echo SERVERURL ?>facturas/factura_ticket.php?id=<?php echo $factura['factura_id']?>')" >
                     <i class="fas fa-print mr-2"></i> IMPRIMIR FACTURA.
                 </a>
             </div>
         </div>
     </div>
 </div>
+
+<script> 
+function ventanaSecundaria (URL){ 
+   window.open(URL,"popup","width=500,height=800,scrollbars=NO") ;
+} 
+</script>
