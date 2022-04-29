@@ -1,8 +1,13 @@
 <?php
 require_once "./controllers/productosControlador.php";
+require_once "./controllers/rubroControlador.php";
 $controlador_usuario = new productosControlador();
+$ins_rubroContorlador = new rubroControlador();
+
 $usuario_editar = $controlador_usuario->get_producto_controlador($pagina[1]);
+$listaRubro = $ins_rubroContorlador->rubro_all();
 echo var_dump($usuario_editar);
+echo var_dump($listaRubro);
 
 ?>
 
@@ -35,6 +40,19 @@ echo var_dump($usuario_editar);
                             </div>
                             <div class="col-sm-6">
                                 <input type="number" class="form-control form-control-user" id="producto_precio_edit" name="producto_precio_edit" value="<?php echo $usuario_editar['producto_precio']; ?>" placeholder="Precio">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                <select class="custom-select " id="producto_rubro_id_edit" name="producto_rubro_id_edit">                
+                                    <?php foreach($listaRubro as $rubro){ ?>
+                                    <option  <?php if($rubro['rubro_id']==$usuario_editar['rubro_id']){ echo 'selected'; }else{} ?>  value="<?php echo $rubro['rubro_id'] ?>"> <?php echo $rubro['rubro_nombre'] ?> </option>                                                     
+                                    <?php } ?>
+                                </select>
+                                
+                                <div class="invalid-feedback text-center">
+                                    Campo Rubro es obligatorio
+                                </div>
                             </div>
                         </div>
                         

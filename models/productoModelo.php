@@ -58,7 +58,8 @@ class productoModelo extends mainModel
             producto_costo=:Costo,
             producto_precio=:Precio,
             producto_existencia=:Existencia,
-            producto_editado=NOW()
+            producto_editado=NOW(),
+            rubro_id = :Rubro
             WHERE producto_id = :Id");
         $sql->bindParam(":Descripcion", $datos['Descripcion']);
         $sql->bindParam(":Codigo", $datos['Codigo']);
@@ -66,6 +67,7 @@ class productoModelo extends mainModel
         $sql->bindParam(":Precio", $datos['Precio']);
         $sql->bindParam(":Existencia", $datos['Existencia']);
         $sql->bindParam(":Id", $datos['Id']);
+        $sql->bindParam(":Rubro",$datos['Rubro']);
         $sql->execute();
         return $sql;
         

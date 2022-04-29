@@ -12,7 +12,7 @@ class productosControlador extends productoModelo
 
 	public function producto_all_controlador()
 	{
-		$consulta = "SELECT * FROM `productos` WHERE producto_estado =1 ORDER BY producto_codigo ASC ";
+		$consulta = "SELECT * FROM `productos` INNER JOIN rubros USING(rubro_id) WHERE producto_estado =1 ORDER BY producto_codigo ASC ";
 		$conexion = mainModel::conectar();
 		$SQL = $conexion->prepare($consulta);
 		$SQL->execute();
@@ -20,6 +20,9 @@ class productosControlador extends productoModelo
 		return $datos;
 	}
 
+
+
+	/** INSERTAR PRODUCTO CONTROLADOR  */
 	public function insertar_producto_controlador()
 	{
 		$producto_codigo = mainModel::limpiar_cadena($_POST['producto_codigo_reg']);
@@ -83,6 +86,9 @@ class productosControlador extends productoModelo
 		echo json_encode($alerta);
 	}
 
+
+
+	/** borrar producto controlador */
 	public function delete_producto_controlador()
 	{
 		$id = mainModel::decryption($_POST['producto_id_del']);
@@ -107,6 +113,8 @@ class productosControlador extends productoModelo
 		echo json_encode($alerta);
 	}
 
+
+	/** obtener producto controlador */
 	public function get_producto_controlador($id)
 	{
 		$id_user =  mainModel::limpiar_cadena($id);
@@ -116,6 +124,8 @@ class productosControlador extends productoModelo
 		return $usuario;
 	}
 
+
+	/** EDITAR PRODUCTO CONTROLADOR */
 	public function editar_producto_controlador()
 	{
 		$producto_codigo = mainModel::limpiar_cadena($_POST['producto_codigo_edit']);
@@ -124,6 +134,8 @@ class productosControlador extends productoModelo
 		$producto_costo = mainModel::limpiar_cadena($_POST['producto_costo_edit']);
 		$producto_precio = mainModel::limpiar_cadena($_POST['producto_precio_edit']);
 		$producto_id = mainModel::limpiar_cadena($_POST['producto_id_edit']);
+		$rubro_id = mainModel::limpiar_cadena($_POST['producto_rubro_id_edit']);
+
 
 		if ($producto_codigo == "" || $producto_existencia == "" || $producto_descripcion == "" || $producto_costo == "" || $producto_precio == "") {
 			$alerta = [
@@ -159,7 +171,8 @@ class productosControlador extends productoModelo
 			"Costo" => $producto_costo,
 			"Precio" => $producto_precio,
 			"Existencia" => $producto_existencia,
-			"Id"=>$producto_id
+			"Id"=>$producto_id,
+			"Rubro" =>$rubro_id
 		];
 
 		$producto_editar = productoModelo::editar_producto_modelo($datos_producto_edit);
@@ -167,14 +180,14 @@ class productosControlador extends productoModelo
 		if ($producto_editar->rowCount() == 1) {
 			$alerta = [
 				"Alerta" => "recargar",
-				"Titulo" => "usuario registrado",
-				"Texto" => "Los datos del usuario han sido actualizados con exito",
+				"Titulo" => "Producto actualizado",
+				"Texto" => "Los datos del producto han sido actualizados con exito en la base de datos",
 				"Tipo" => "success"
 			];
 		} else {
 			$alerta = [
 				"Alerta" => "simple",
-				"Titulo" => "Ocurrió un error inesperado, Actualizando",
+				"Titulo" => "Error al Actualizar Producto.",
 				"Texto" => "No hemos podido actualizar el usuario",
 				"Tipo" => "error"
 			];

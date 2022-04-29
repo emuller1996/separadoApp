@@ -32,6 +32,7 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                     <th>Costo</th>
                     <th>Precio</th>
                     <th>Existencia</th>
+                    <th>Rubro</th>
                     <th>Creado</th>
                     <th>Estado</th>
                     <th>&nbsp;</th>
@@ -45,6 +46,7 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                             <td class="text-nowrap"><?php echo '$ ' . number_format($row['producto_costo'], 0, '', '.'); ?></td>
                             <td class="text-nowrap"><?php echo '$ ' . number_format($row['producto_precio'], 0, '', '.'); ?></td>
                             <td class="text-nowrap"><?php echo $row['producto_existencia'] ?></td>
+                            <td class="text-nowrap"><?php echo $row['rubro_nombre'] ?></td>
                             <td class="text-nowrap"><?php echo $row['producto_creado'] ?></td>
                             <td><span class="px-2 py-1 bg-primary rounded-pill text-white">
                                     <?php
