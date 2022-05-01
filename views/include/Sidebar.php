@@ -104,6 +104,20 @@
         </div>
     </li>
 
+    <!-- Nav Item - EMPRESA -->
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEmpresa" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-landmark"></i>
+            <span> Empresa</span>
+        </a>
+        <div id="collapseEmpresa" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Informacion de la Empresa</h6>
+                <a class="collapse-item" href="<?php echo SERVERURL?>empresa/">Datos Empresa</a>
+            </div>
+        </div>
+    </li>
+
 
     
     <!-- Sidebar Toggler (Sidebar) -->

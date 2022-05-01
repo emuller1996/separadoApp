@@ -40,7 +40,7 @@ $pdf = new FPDF('P','mm',array(80,120));
 	$pdf->Cell(20,8,utf8_decode(date("d/m/Y", strtotime($datos_factura['factura_fecha']))),0,0);
 	$pdf->Cell(11,8,utf8_decode('HORA:'),0,0);
 	$pdf->SetTextColor(97,97,97);
-	$pdf->Cell(20,8,utf8_decode(date("h:m", strtotime($datos_factura['factura_hora']))),0,0);
+	$pdf->Cell(20,8,utf8_decode(date("h:i A", strtotime($datos_factura['factura_hora']))),0,0);
 	
 	$pdf->Ln(4);
 

@@ -25,7 +25,7 @@ $datos = $ins_productos_controlador->producto_all_controlador();
             </div>
         </div>
         <div class="table-responsive">
-            <table id="data-table" class="table-striped table-bordered table-hover w-100">
+            <table id="data-table" class="table-hover table-striped bg-light rounded border">
                 <thead>
                     <th>Codigo</th>
                     <th>Description</th>

@@ -19,7 +19,7 @@ $listaRubro = $ins_rubroContorlador->rubro_all();
             </div>
             <div class="col-10">
                 <div class="table-responsive">
-                    <table class="table w-100 text-center table-bordered  table-hover">
+                    <table id="data-table" class="table-hover table-striped bg-light  border w-100 text-center rounded ">
                         <thead>
                             <th>ID</th>
                             <th>Rubro</th>

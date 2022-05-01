@@ -56,11 +56,11 @@
             <i class="fas fa-cart-plus mr-2"></i>
             Agregar Producto
         </button>
-        <div class="table-responsive">
-            <table class="table table-bordered">
-                <thead>
+        <div class="table-responsive rounded">
+            <table class="table-hover table-striped bg-light  border w-100 ">
+                <thead >
 
-                    <th>Descripcion</th>
+                    <th class="py-2 text-center">Descripcion</th>
                     <th>Codigo</th>
                     <th>Cantidad</th>
                     <th>Vr Unitario</th>

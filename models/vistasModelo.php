@@ -10,7 +10,9 @@
 			"Rubros",
 			"cliente-nuevo",
 			"registrar-factura","facturas-emitidas","ver-factura","facturas-buscar","facturas-por-fecha",
-			"Separados","separado"];
+			"Separados","separado",
+			"empresa",
+			"caja-hoy"];
 			if(in_array($vistas, $listaBlanca)){
 				if(is_file("./views/content/".$vistas."-view.php")){
 					$contenido="./views/content/".$vistas."-view.php";

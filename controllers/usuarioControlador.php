@@ -94,7 +94,7 @@ class usuarioControlador extends usuarioModelo
 
 		$tabla .= '
 			<div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover" id="data-table" width="100%" cellspacing="0">
+            <table class="table-hover table-striped bg-light rounded border" id="data-table" width="100%" cellspacing="0">
                 <thead>
                     <tr>
                         <th>Id</th>

@@ -10,7 +10,7 @@ $lista_clientes = $ins_cliente_controlador->listar_clientes_controlador();
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table-hover table-striped table-bordered" id="data-table">
+            <table class="table-hover table-striped bg-light rounded border border-danger" id="data-table">
                 <thead>
                     <th>Documento</th>
                     <th>Nombre</th>

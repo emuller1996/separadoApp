@@ -364,7 +364,6 @@ class facturaControlador extends facturaModelo
         if($_POST['tipo_factura']=='SEPARADO'){
             $saldo = mainModel::limpiar_cadena($_POST['separado_saldo_reg']);
             $Abono = mainModel::limpiar_cadena($_POST['separado_abonado_reg']);
-
             /**Datos de Separado Insert */
             $datos_separado_insertar = [
                 'Saldo' =>$saldo,
@@ -392,8 +391,20 @@ class facturaControlador extends facturaModelo
                     $detalle_error++;
                 }
             }
+        }
 
 
+        /** INSERT MOVIMIENTO CAJA CONTROLADOR */
+        $datos_movimiento = [
+            'Valor' => $total,
+            'Tipo' => 'ENTRADA',
+            'Concepto'=> 'VENTA FACTURA : FT- ' . $n_factura['COUNT(factura_id)'],
+            'Referencia' => 'FT- ' . $n_factura['COUNT(factura_id)']
+        ];
+        $movimiento_ins = facturaModelo::insertar_moviento_caja_modelo($datos_movimiento);
+        
+        if($movimiento_ins->rowCount()!=1){
+            $detalle_error++;
         }
 
 
@@ -481,7 +492,8 @@ class facturaControlador extends facturaModelo
     }
 
     /**  */
-    public function listar_facturas_por_fecha_controlador($inicio,$fin){
+    public function listar_facturas_por_fecha_controlador($inicio,$fin)
+    {
         $fecha_inicio = mainModel::limpiar_cadena($inicio);
         $fecha_fin = mainModel::limpiar_cadena($fin);
 

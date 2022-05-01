@@ -17,7 +17,7 @@ $total_factura_emitidas = 0;
     <div class="card-body">
         
     <div class="table-responsive ">
-            <table id="data-table" class=" table-light  table-striped">
+            <table id="data-table" class="table-light  table-striped">
                 <thead>
                     <th>Codigo Factura</th>
                     <th>Hora</th>
@@ -53,7 +53,7 @@ $total_factura_emitidas = 0;
                         }
                     } else { ?>
                     <tr class="text-center">
-                        <td colspan="5" class="text-center">Hoy no se han realizado Facturas .</td>
+                        <td colspan="7" class="text-center">Hoy no se han realizado Facturas .</td>
                     </tr>
                     <?php
                     }
@@ -78,6 +78,9 @@ $total_factura_emitidas = 0;
                         <td colspan="1" class="text-center">
                             &nbsp;
                         </td>
+                        <td colspan="1" class="text-center">
+                            &nbsp;
+                        </td>   
                     </tr>
                 </tbody>
             </table>

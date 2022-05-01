@@ -32,5 +32,3 @@ class clienteModelo extends mainModel {
 
 }
 
-
-?>

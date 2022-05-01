@@ -141,6 +141,20 @@ class facturaModelo extends mainModel {
 
     }
 
+    protected function insertar_moviento_caja_modelo($datos){
+        $sql = mainModel::conectar()->prepare(
+            "INSERT INTO `movimientos_caja`( `movimiento_caja_fecha`, `movimiento_caja_hora`, `movimiento_caja_valor`, `movimiento_caja_tipo`, `movimiento_caja_concepto`, `movimiento_caja_referencia`) 
+            VALUES (NOW(),NOW(),:Valor,:Tipo,:Concepto,:Referencia)"
+        );
+        $sql->bindParam(":Valor", $datos['Valor']);
+        $sql->bindParam(":Tipo", $datos['Tipo']);
+        $sql->bindParam(":Concepto", $datos['Concepto']);
+        $sql->bindParam(":Referencia", $datos['Referencia']);
+        $sql->execute();
+        return $sql;
+
+    }
+
 
 
 }

@@ -44,8 +44,8 @@ $detalles_factura = $ins_factura->get_detalles_factura_controlador($pagina[1]);
                             <tr>
                                 <td class="text-nowrap text-center"><?php echo $detalle['detalle_cantidad']; ?></td>
                                 <td class="text-nowrap text-center"><?php echo $detalle['producto_descripcion']; ?></td>
-                                <td class="text-nowrap text-center"><?php echo $detalle['detalle_valor_unitario']; ?></td>
-                                <td class="text-nowrap text-center"><?php echo $detalle['detalle_valor_total']; ?></td>
+                                <td class="text-nowrap text-center">$<?php echo number_format($detalle['detalle_valor_unitario'], 0, '', '.'); ?></td>
+                                <td class="text-nowrap text-center">$<?php echo number_format($detalle['detalle_valor_total'], 0, '', '.'); ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>

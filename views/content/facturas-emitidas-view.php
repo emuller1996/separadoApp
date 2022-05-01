@@ -15,13 +15,14 @@ $total_factura_emitidas = 0;
     </div>
     <div class="card-body">
         <div class="table-responsive ">
-            <table id="data-table" class="table table-light table-bordered table-striped">
+            <table id="data-table" class="table-hover table-striped bg-light rounded border">
                 <thead>
                     <th>Codigo Factura</th>
                     <th>Hora</th>
                     <th>Cliente</th>
                     <th>Estado</th>
                     <th>Total</th>
+                    <th>&nbsp;</th>
                 </thead>
                 <tbody>
                     <?php
@@ -67,7 +68,7 @@ $total_factura_emitidas = 0;
                         <td colspan="1" class="text-center">
                             Total Valor Fact.
                         </td>
-                        <td colspan="1" class="text-center">
+                        <td colspan="2" class="text-center">
                             $ <?php echo number_format($total_valor_factura_emitidas, 0, "", "."); ?>
                         </td>
                     </tr>
