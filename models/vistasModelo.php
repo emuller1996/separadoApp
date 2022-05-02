@@ -12,7 +12,7 @@
 			"registrar-factura","facturas-emitidas","ver-factura","facturas-buscar","facturas-por-fecha",
 			"Separados","separado",
 			"empresa",
-			"caja-hoy"];
+			"caja-hoy","caja-editar-movimiento"];
 			if(in_array($vistas, $listaBlanca)){
 				if(is_file("./views/content/".$vistas."-view.php")){
 					$contenido="./views/content/".$vistas."-view.php";

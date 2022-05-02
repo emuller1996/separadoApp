@@ -30,18 +30,18 @@ $lista_separado = $ins_separado_controlador->listar_separados_controlador();
                     <?php foreach ($lista_separado as $separado ) {?>
 
                         <tr class="<?php if($separado['separado_fecha_vencimiento']== getdate()){ echo 'bg-danger';}else{echo 'bg-success';}  ?>">
-                            <td class="text-nowrap"><?php echo $separado['separado_id'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['separado_fecha_inicio'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['separado_fecha_vencimiento'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['separado_saldo'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['separado_abonado'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['separarado_estado_estado'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['separado_ultimo_fecha_abono'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['separado_ultimo_valor_abono'] ?></td>
-                            <td class="text-nowrap">FT-<?php echo $separado['factura_id'] ?></td>
-                            <td class="text-nowrap"><?php echo $separado['cliente_nombre'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separado_id'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separado_fecha_inicio'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separado_fecha_vencimiento'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separado_saldo'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separado_abonado'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separarado_estado_estado'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separado_ultimo_fecha_abono'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['separado_ultimo_valor_abono'] ?></td>
+                            <td class="text-white text-nowrap">FT-<?php echo $separado['factura_id'] ?></td>
+                            <td class="text-white text-nowrap"><?php echo $separado['cliente_nombre'] ?></td>
                             <td>
-                                <a href="<?php echo SERVERURL ?>separado/<?php echo $separado['separado_id']?>" class="btn btn-sm btn-info">
+                                <a href="<?php echo SERVERURL ?>separado/<?php echo $separado['separado_id']?>" class="btn btn-sm btn-dark">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </td>

@@ -279,6 +279,7 @@ class facturaControlador extends facturaModelo
         $total = mainModel::limpiar_cadena($_POST['total_factura_reg']);
         session_start(['name' => 'SPM']);
         $estado_factura='CANCELADA';
+        $valor_movimiento = $total;
 
         /**Validacion Campo */
         if( !isset($_SESSION['total_productos'] ) || !isset($_SESSION['datos_producto'])){
@@ -341,6 +342,7 @@ class facturaControlador extends facturaModelo
         $n_factura = facturaModelo::get_id_factura();      
         $detalle_error= 0;
 
+        /** INSERT DETALLES DE LA VENTA */
         foreach ($_SESSION['datos_producto'] as $producto ){
 
             $datos_detalle = [
@@ -360,10 +362,14 @@ class facturaControlador extends facturaModelo
         }
 
         /**Datos Separado */
+        $concepto = 'VENTA FACTURA : FT- ' . $n_factura['COUNT(factura_id)'];
 
         if($_POST['tipo_factura']=='SEPARADO'){
             $saldo = mainModel::limpiar_cadena($_POST['separado_saldo_reg']);
             $Abono = mainModel::limpiar_cadena($_POST['separado_abonado_reg']);
+            $concepto = 'ABONO SEPARADO : FT- ' . $n_factura['COUNT(factura_id)'];
+
+            $valor_movimiento = $Abono;
             /**Datos de Separado Insert */
             $datos_separado_insertar = [
                 'Saldo' =>$saldo,
@@ -395,10 +401,11 @@ class facturaControlador extends facturaModelo
 
 
         /** INSERT MOVIMIENTO CAJA CONTROLADOR */
+        
         $datos_movimiento = [
-            'Valor' => $total,
+            'Valor' => $valor_movimiento,
             'Tipo' => 'ENTRADA',
-            'Concepto'=> 'VENTA FACTURA : FT- ' . $n_factura['COUNT(factura_id)'],
+            'Concepto'=> $concepto ,
             'Referencia' => 'FT- ' . $n_factura['COUNT(factura_id)']
         ];
         $movimiento_ins = facturaModelo::insertar_moviento_caja_modelo($datos_movimiento);

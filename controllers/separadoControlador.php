@@ -6,7 +6,7 @@ if ($peticionAjax) {
 	require_once "./models/separadoModelo.php";
 }
 
-class separadoControlador extends separadoModelo{
+class separadoControlador extends separadoModelo {
 
     /**LISTAR SEPARADOS  */
     public function listar_separados_controlador()
@@ -99,9 +99,28 @@ class separadoControlador extends separadoModelo{
         if($separado_edit->rowCount()!=1){
             $errors++;
             $alerta = [
-                "Alerta" => "al cargar separado",
+                "Alerta" => "simple",
                 "Titulo" => "Abono Registrado",
                 "Texto" => "Los datos del Abono han sido registrados con exito",
+                "Tipo" => "error"
+            ];
+        }
+
+        $datos_movimiento = [
+            'Valor'=>$valor_abono,
+            'Tipo' => 'ENTRADA',
+            'Concepto' => 'ABONO SEPARADO : SP - '.$separado_id,
+            'Referencia'=> 'SP - '.$separado_id
+        ];
+
+        $movimiento_ins = separadoModelo::insertar_caja_movimiento_modelo($datos_movimiento);
+
+        if ($movimiento_ins->rowCount()!= 1){
+            $errors++;
+            $alerta = [
+                "Alerta" => "simple",
+                "Titulo" => "Error al Reg. Caja Movimiento",
+                "Texto" => "no se ha podido realizar el registro del movimiento en caja.",
                 "Tipo" => "error"
             ];
         }

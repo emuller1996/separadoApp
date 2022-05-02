@@ -13,10 +13,11 @@ $saldo = 0;
 
 
         <div class="row">
-            <div class="col-4">
-                <button class="btn btn-primary w-100" data-toggle="modal" data-target="#CajaModal">
+            <div class="col-3">
+                <button class="btn btn-info w-100 " data-toggle="modal" data-target="#CajaModal">
 
-                    <i class="fas fa-money-check-alt fa-2x mr-2"></i>
+                    
+                    <i class="fas fa-plus-circle fa-2x mr-2"></i>
                     Nuevo Mov.
                 </button>
             </div>
@@ -27,11 +28,12 @@ $saldo = 0;
             <table class="table-hover table-striped bg-light border w-100" id="">
                 <thead class="bg-primary text-white">
                     <tr>
-                        <th>HORA</th>
+                        <th class="text-center py-3">HORA</th>
                         <th>CONCEPTO</th>
                         <th>ENTRADA</th>
                         <th>SALIDA</th>
                         <th>SALDO</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,7 +41,7 @@ $saldo = 0;
                     if ($listaMovimienos) {
                         foreach ($listaMovimienos as $movimiento) { ?>
                             <tr>
-                                <td scope="row"> <?php echo date("h:i a", strtotime($movimiento['movimiento_caja_hora'])); ?></td>
+                                <td class="py-2 text-center"> <?php echo date("h:i a", strtotime($movimiento['movimiento_caja_hora'])); ?></td>
                                 <td> <?php echo $movimiento['movimiento_caja_concepto'] ?> </td>
                                 <td>
                                     <?php
@@ -62,6 +64,21 @@ $saldo = 0;
                                     ?>
                                 </td>
                                 <td><?php echo number_format($saldo, 0, '', '.'); ?> </td>
+                                <td>
+                                    <?php if ($movimiento['movimiento_caja_referencia']  == 'N/A') { ?>
+                                        <div class="btn-group">
+
+                                            <a href="<?php echo SERVERURL ?>caja-editar-movimiento/<?php echo mainModel::encryption($movimiento['movimiento_caja_id']); ?>" class="btn btn-sm btn-warning"> <i class="fas fa-edit"></i> </a>
+
+                                            <form action="<?php echo SERVERURL ?>ajax/cajaAjax.php" method="post" class="FormularioAjax" data-form="del">
+                                                <input type="hidden" name="movimiento_id_del" value="<?php echo $movimiento['movimiento_caja_id'];?>">
+                                                <button class="btn btn-sm btn-primary" type="submit">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    <?php } ?>
+                                </td>
                             </tr>
                         <?php
                         }
@@ -142,21 +159,26 @@ $saldo = 0;
     </div>
 </div>
 
+
+
+
+
+
+
 <script>
-    function select_color(){
+    function select_color() {
         var select = $('#caja_movimiento_tipo_reg').val();
-        if(select === 'SALIDA'){
+        if (select === 'SALIDA') {
             $('#caja_movimiento_tipo_reg').addClass('bg-danger');
-            $('#caja_movimiento_tipo_reg').removeClass('bg-success');   
-        }else{
+            $('#caja_movimiento_tipo_reg').removeClass('bg-success');
+        } else {
             $('#caja_movimiento_tipo_reg').addClass('bg-success');
-            $('#caja_movimiento_tipo_reg').removeClass('bg-danger');   
+            $('#caja_movimiento_tipo_reg').removeClass('bg-danger');
         }
 
     }
-
 </script>
 
-<?php 
+<?php
 require_once "./views/include/validation.php";
 ?>
