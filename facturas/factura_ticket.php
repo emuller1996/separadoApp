@@ -4,8 +4,14 @@ require_once "../config/APP.php";
 $peticionAjax = true;
 $id = $_GET['id'];
 require_once "../controllers/facturaControlador.php";
+require_once "../controllers/empresaControlador.php";
+
 $ins_factura = new facturaControlador();
+$ins_empresa = new empresaControlador();
+
+
 $datos_factura = $ins_factura->get_factura_by_id_controlador($id);
+$datos_empresa = $ins_empresa->getEmpresa();
 $detalles_factura = $ins_factura->get_detalles_factura_controlador($id);
 
 session_start(['name' => 'SPM']);
@@ -18,15 +24,29 @@ if(empty($_SESSION['id_spm'])){
 $pdf = new FPDF('P','mm',array(80,120));
 	$pdf->SetMargins(3,3,3);
 	$pdf->AddPage();
-	$pdf->Image('../views/img/logo_empresa2.png',5,5,50,20,'PNG');
+	$pdf->Image('../'.$datos_empresa['empresa_url_imagen'],5,5,30,30,'PNG');
+	
+	$pdf->SetFont('Arial','',12);
+	$pdf->SetTextColor(0,107,181);
+	$pdf->Cell(0,5,utf8_decode($datos_empresa['empresa_razon_social']),0,0,'R');
+	$pdf->SetFont('Arial','',9);
+	$pdf->SetTextColor(97,97,97);
+	$pdf->Cell(0,15,utf8_decode("Nit : ".$datos_empresa['empresa_nit']),0,0,'R');
+	$pdf->Cell(0,21,utf8_decode($datos_empresa['empresa_representante']),0,0,'R');
+	$pdf->SetFont('Arial','',8);
+	$pdf->Cell(0,28,utf8_decode($datos_empresa['empresa_direccion']),0,0,'R');
+	$pdf->Cell(0,34,utf8_decode($datos_empresa['empresa_departamento']),0,0,'R');
+	$pdf->Cell(0,40,utf8_decode($datos_empresa['empresa_cuidad']),0,0,'R');
+
+
 
 	
 
-	$pdf->Ln(5);
+	$pdf->Ln(20);
 
-	$pdf->SetFont('Arial','',15);
+	$pdf->SetFont('Arial','',12);
 	$pdf->SetTextColor(0,107,181);
-	$pdf->Cell(0,20,utf8_decode(""),0,0,'C');
+	$pdf->Cell(0,-10,utf8_decode(""),0,0,'C');
 	$pdf->SetFont('Arial','',15);
 	$pdf->SetTextColor(97,97,97);
 	$pdf->Cell(-25,15,utf8_decode("FT - ".$datos_factura['factura_id']),'',0,'C');
@@ -95,7 +115,7 @@ $pdf = new FPDF('P','mm',array(80,120));
 
 
 
-	$pdf->Output("I","Factura_1.pdf",true);
+	$pdf->Output("I","Factura_".$datos_factura['factura_id'].".pdf",true);
 
 
 ?>
