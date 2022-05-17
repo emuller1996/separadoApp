@@ -20,13 +20,14 @@ $datos = $ins_productos_controlador->producto_all_controlador();
             </div>
             <div class="col-xl-3 col-md-6 col-sm-12">
                 <a href="<?php echo SERVERURL ?>Rubros" class="btn btn-warning py-3 w-100 mb-2">
-                <i class="fas fa-tasks mr-2"></i>GESTION RUBRO
+                    <i class="fas fa-tasks mr-2"></i>GESTION RUBRO
                 </a>
             </div>
         </div>
         <div class="table-responsive">
             <table id="data-table" class="table-hover table-striped bg-light rounded border">
                 <thead>
+                    <th>&nbsp;</th>
                     <th>Codigo</th>
                     <th>Description</th>
                     <th>Costo</th>
@@ -41,6 +42,9 @@ $datos = $ins_productos_controlador->producto_all_controlador();
                     <?php foreach ($datos as $row) { ?>
                         <tr>
 
+                            <td >
+                                <img src="https://placeimg.com/640/480/any" alt="imageProduct" style="width: 8rem;">
+                            </td>
                             <td class="text-nowrap"><?php echo $row['producto_codigo'] ?></td>
                             <td class="text-nowrap"><?php echo $row['producto_descripcion'] ?></td>
                             <td class="text-nowrap"><?php echo '$ ' . number_format($row['producto_costo'], 0, '', '.'); ?></td>
